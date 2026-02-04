@@ -6,10 +6,10 @@
 6. Supply Hub (Round 1 Event) contested.jpg
 7. Ash Wastes contested.jpg
 8. Blank Hex contested.jpg
-9. Home Hex grey-knights.jpg flipped
-10. Home Hex raptors.jpg flipped
-11. Blank Hex contested.jpg
-12. Manufactorum contested.jpg
+9. Blank Hex contested.jpg
+10. Manufactorum contested.jpg
+11. Home Hex grey-knights.jpg flipped
+12. Home Hex raptors.jpg flipped
 13. Blank Hex contested.jpg
 14. Hive City (Round 1 Event) contested.jpg
 15. Ash Wastes contested.jpg
@@ -33,8 +33,8 @@
 33. Fortified Bastion (Round 1 Event) contested.jpg
 34. Blank Hex contested.jpg
 35. Manufactorum contested.jpg
-36. Home Hex world-eaters.jpg flipped
-37. Home Hex death-guard.jpg flipped
+36. Blank Hex contested.jpg
+37. Blank Hex contested.jpg
 38. Blank Hex contested.jpg
 39. Blank Hex contested.jpg
 40. Ash Wastes contested.jpg
@@ -43,33 +43,33 @@
 43. Blank Hex contested.jpg
 44. Blank Hex contested.jpg
 45. Hive City contested.jpg
-46. Home Hex thousand-sons.jpg flipped
-47. Home Hex contested.jpg flipped
+46. Blank Hex contested.jpg
+47. Blank Hex contested.jpg
 48. Blank Hex contested.jpg
 49. Manufactorum contested.jpg
-50. Blank Hex contested.jpg
+50. Home Hex thousand-sons.jpg flipped
 51. Blank Hex contested.jpg
 52. Ash Wastes contested.jpg
 53. Blank Hex contested.jpg
 54. Supply Hub contested.jpg
 55. Blank Hex contested.jpg
-56. Blank Hex contested.jpg
+56. Hive City contested.jpg
 57. Blank Hex contested.jpg
 58. Blank Hex contested.jpg
-59. Hive City contested.jpg
-60. Blank Hex contested.jpg
+59. Home Hex world-eaters.jpg flipped
+60. Home Hex contested.jpg flipped
 61. Warp-Scarred Zone (Round 1 Event) contested.jpg
 62. Manufactorum contested.jpg
 63. Blank Hex contested.jpg
 64. Fortified Bastion contested.jpg
-65. Home Hex necron.jpg flipped
-66. Home Hex orks.jpg flipped
+65. Blank Hex contested.jpg
+66. Blank Hex contested.jpg
 67. Blank Hex contested.jpg
 68. Blank Hex contested.jpg
 69. Ash Wastes contested.jpg
-70. Blank Hex contested.jpg
-71. Home Hex tau.jpg flipped
-72. Home Hex votann.jpg flipped
+70. Home Hex death-guard.jpg flipped
+71. Blank Hex contested.jpg
+72. Blank Hex contested.jpg
 73. Blank Hex contested.jpg
 74. Hex74 contested.jpg
 75. Hex75 contested.jpg
@@ -108,8 +108,8 @@
 108. Hex108 contested.jpg
 109. Hex109 contested.jpg
 110. Hex110 contested.jpg
-111. Hex111 contested.jpg
-112. Hex112 contested.jpg
+111. Home Hex necron.jpg flipped
+112. Home Hex orks.jpg flipped
 113. Hex113 contested.jpg
 114. Hex114 contested.jpg
 115. Hex115 contested.jpg
@@ -118,8 +118,9 @@
 118. Hex118 contested.jpg
 119. Hex119 contested.jpg
 120. Hex120 contested.jpg
-121. Hex121 contested.jpg
-122. Hex122 contested.jpg
+121. Home Hex tau.jpg flipped
+122. Home Hex votann.jpg flipped
+
 
 
 
