@@ -121,7 +121,7 @@ body {
 
 <script>
 const OWNER_PASSWORD = "joseph";
-const IS_OWNER = prompt("Enter control password or just hit cancel to view:") === OWNER_PASSWORD;
+const IS_OWNER = prompt("Enter control password or hit cancel to view:") === OWNER_PASSWORD;
 
 const music = document.getElementById('bgMusic');
 music.volume = 0.75;
@@ -242,7 +242,7 @@ mapImage.onload = () => {
 
           if (savedFlips[num] === 'flipped') {
             hex.classList.add('flipped');
-          } else if (!savedFlips[num] && data.type.toLowerCase() === 'Home Hex') {
+          } else if (!savedFlips[num] && data.type.toLowerCase() === 'home') {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
           }
@@ -268,7 +268,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
-
-
-
