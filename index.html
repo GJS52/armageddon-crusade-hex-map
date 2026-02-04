@@ -48,6 +48,7 @@ body {
   position: relative;
   perspective: 800px;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
+  border: 1px solid rgba(0,0,0,0.4); /* slight black border */
 }
 
 .hex:hover {
@@ -193,7 +194,6 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  // Cache-busting fetch to always get latest hex-data.txt
   fetch('hex-data.txt?t=' + new Date().getTime())
     .then(r => r.text())
     .then(text => {
@@ -240,10 +240,9 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Start flipped if saved flipped, or if type is Home and no saved flip exists
           if (savedFlips[num] === 'flipped') {
             hex.classList.add('flipped');
-          } else if (!savedFlips[num] && data.type.toLowerCase() === 'Home Hex') {
+          } else if (!savedFlips[num] && data.type.toLowerCase() === 'home') {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
           }
