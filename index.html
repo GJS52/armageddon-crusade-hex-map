@@ -86,7 +86,7 @@ body {
 }
 
 /* ================= FRONT (MAP SIDE) ================= */
-/*.front {
+.front {
   background-image: url('map.jpg');
   background-size: var(--map-width) var(--map-height);
   background-position: var(--bg-x) var(--bg-y);
@@ -97,7 +97,7 @@ body {
 }
 
 /* CENTER NUMBER ON MAP */
-/*.front-number {
+.front-number {
   font-size: 28px;
   font-weight: 800;
   color: #fff;
@@ -106,29 +106,8 @@ body {
   border-radius: 8px;
   text-shadow: 0 0 6px rgba(0,0,0,0.9);
   pointer-events: none;
-}*/
-.front {
-  background-image: url('map.jpg');
-  background-size: var(--map-width) var(--map-height);
-  background-position: var(--bg-x) var(--bg-y);
-  background-repeat: no-repeat;
-  position: relative;
 }
-.front-number {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  background: rgba(0,0,0,0.55);
-  padding: 4px 10px;
-  border-radius: 6px;
-  text-shadow: 0 0 6px rgba(0,0,0,0.9);
-  pointer-events: none;
-  z-index: 2;
-}
+
 /* ================= BACK (INFO SIDE) ================= */
 .back {
   transform: rotateY(180deg);
@@ -324,4 +303,5 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
