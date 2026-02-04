@@ -125,7 +125,18 @@ const IS_OWNER = prompt("Enter control password or hit cancel to view:") === OWN
 
 const music = document.getElementById('bgMusic');
 music.volume = 0.75;
-music.play().catch(() => {});
+
+function tryPlayMusic() {
+  music.play().catch(() => {});
+  // Remove the listener after first play
+  window.removeEventListener('click', tryPlayMusic);
+  window.removeEventListener('touchstart', tryPlayMusic);
+}
+
+// Listen for the first click or touch
+window.addEventListener('click', tryPlayMusic);
+window.addEventListener('touchstart', tryPlayMusic);
+
 
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
@@ -268,3 +279,4 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
