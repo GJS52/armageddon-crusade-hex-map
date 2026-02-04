@@ -1,13 +1,13 @@
-1. Home Hex contested.jpg
-2. Home Hex contested.jpg
+1. Home Hex custodes.jpg
+2. Home Hex dark-angels.jpg
 3. Blank Hex contested.jpg
 4. Blank Hex contested.jpg
 5. Hive City contested.jpg
 6. Supply Hub (Round 1 Event) contested.jpg
 7. Ash Wastes contested.jpg
 8. Blank Hex contested.jpg
-9. Home Hex contested.jpg
-10. Home Hex contested.jpg
+9. Home Hex grey-knights.jpg
+10. Home Hex raptors.jpg
 11. Blank Hex contested.jpg
 12. Manufactorum contested.jpg
 13. Blank Hex contested.jpg
@@ -33,8 +33,8 @@
 33. Fortified Bastion (Round 1 Event) contested.jpg
 34. Blank Hex contested.jpg
 35. Manufactorum contested.jpg
-36. Blank Hex contested.jpg
-37. Home Hex contested.jpg
+36. Home Hex world-eaters.jpg
+37. Home Hex death-guard.jpg
 38. Blank Hex contested.jpg
 39. Blank Hex contested.jpg
 40. Ash Wastes contested.jpg
@@ -43,7 +43,7 @@
 43. Blank Hex contested.jpg
 44. Blank Hex contested.jpg
 45. Hive City contested.jpg
-46. Home Hex contested.jpg
+46. Home Hex thousand-sons.jpg
 47. Home Hex contested.jpg
 48. Blank Hex contested.jpg
 49. Manufactorum contested.jpg
@@ -53,7 +53,7 @@
 53. Blank Hex contested.jpg
 54. Supply Hub contested.jpg
 55. Blank Hex contested.jpg
-56. Home Hex contested.jpg
+56. Blank Hex contested.jpg
 57. Blank Hex contested.jpg
 58. Blank Hex contested.jpg
 59. Hive City contested.jpg
@@ -70,5 +70,6 @@
 70. Blank Hex contested.jpg
 71. Home Hex tau.jpg
 72. Home Hex votann.jpg
+
 
 
