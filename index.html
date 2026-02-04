@@ -198,7 +198,6 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  // Load hex data
   fetch('hex-data.txt')
     .then(r => r.text())
     .then(text => {
@@ -245,20 +244,22 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Restore flipped state from localStorage
-          if (savedFlips[num]) hex.classList.add('flipped');
+          // Apply saved flip state
+          if (savedFlips[num] === 'flipped') hex.classList.add('flipped');
+          if (savedFlips[num] === 'permanent') hex.classList.add('permanent-flipped');
 
           if (IS_OWNER) {
             hex.addEventListener('click', () => {
               if (hex.classList.contains('permanent-flipped')) return;
               hex.classList.toggle('flipped');
-              savedFlips[num] = hex.classList.contains('flipped');
+              savedFlips[num] = hex.classList.contains('flipped') ? 'flipped' : null;
               localStorage.setItem('flippedHexes', JSON.stringify(savedFlips));
             });
+
             hex.addEventListener('contextmenu', e => {
               e.preventDefault();
               hex.classList.add('permanent-flipped');
-              savedFlips[num] = true;
+              savedFlips[num] = 'permanent';
               localStorage.setItem('flippedHexes', JSON.stringify(savedFlips));
             });
           }
