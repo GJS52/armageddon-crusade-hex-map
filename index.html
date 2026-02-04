@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Armageddon, the eternal planet of war</title>
+<title>Armageddon, the planet of eternal war</title>
 <style>
 body {
   margin: 0;
@@ -19,6 +19,21 @@ body {
   font-family: Arial, sans-serif;
   color: #fff;
   touch-action: none;
+}
+
+#musicButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
 }
 
 .map-wrapper {
@@ -48,7 +63,7 @@ body {
   position: relative;
   perspective: 800px;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
-  border: 1px solid rgba(0,0,0,0.4); /* slight black border */
+  border: 1px solid rgba(0,0,0,0.4);
 }
 
 .hex:hover {
@@ -113,7 +128,8 @@ body {
 </head>
 <body>
 
-<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
+<div id="musicButton">Play Music</div>
+<audio id="bgMusic" src="music.mp3" loop></audio>
 
 <div class="map-wrapper" id="mapWrapper">
   <div class="map" id="hexMap"></div>
@@ -121,22 +137,21 @@ body {
 
 <script>
 const OWNER_PASSWORD = "joseph";
-const IS_OWNER = prompt("Enter control password or hit cancel to view:") === OWNER_PASSWORD;
+const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD;
 
 const music = document.getElementById('bgMusic');
 music.volume = 0.75;
 
-function tryPlayMusic() {
-  music.play().catch(() => {});
-  // Remove the listener after first play
-  window.removeEventListener('click', tryPlayMusic);
-  window.removeEventListener('touchstart', tryPlayMusic);
-}
-
-// Listen for the first click or touch
-window.addEventListener('click', tryPlayMusic);
-window.addEventListener('touchstart', tryPlayMusic);
-
+const musicButton = document.getElementById('musicButton');
+musicButton.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicButton.textContent = 'Pause Music';
+  } else {
+    music.pause();
+    musicButton.textContent = 'Play Music';
+  }
+});
 
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
@@ -216,11 +231,12 @@ mapImage.onload = () => {
         if (firstDot === -1) return;
         const num = line.slice(0, firstDot).trim();
         const rest = line.slice(firstDot + 1).trim();
-        const lastSpace = rest.lastIndexOf(' ');
-        if (lastSpace === -1) return;
-        const type = rest.slice(0, lastSpace).trim();
-        const backImage = rest.slice(lastSpace + 1).trim();
-        hexData[num] = { type, backImage };
+        const parts = rest.split(' ');
+        if (parts.length < 2) return;
+        const flipFlag = parts[parts.length - 1].toLowerCase() === 'flipped' ? 'flipped' : '';
+        const backImage = flipFlag === 'flipped' ? '' : parts[parts.length - 1];
+        const type = parts.slice(0, parts.length - 1 - (flipFlag === 'flipped' ? 0 : 1)).join(' ');
+        hexData[num] = { type, backImage, flipped: flipFlag === 'flipped' };
       });
 
       const savedFlips = JSON.parse(localStorage.getItem('flippedHexes') || '{}');
@@ -240,7 +256,7 @@ mapImage.onload = () => {
           hex.style.setProperty('--bg-x', `${-xF * mapImage.width}px`);
           hex.style.setProperty('--bg-y', `${-yF * mapImage.height}px`);
 
-          const data = hexData[num] || { type: 'Blank', backImage: '' };
+          const data = hexData[num] || { type: 'Blank', backImage: '', flipped: false };
 
           hex.innerHTML = `
             <div class="hex-inner">
@@ -251,9 +267,8 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          if (savedFlips[num] === 'flipped') {
-            hex.classList.add('flipped');
-          } else if (!savedFlips[num] && data.type.toLowerCase() === 'home') {
+          // Set initial flipped state: either from hex-data flipped, home type, or localStorage
+          if (data.flipped || savedFlips[num] === 'flipped' || (!savedFlips[num] && data.type.toLowerCase() === 'Home Hex')) {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
           }
@@ -279,4 +294,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
