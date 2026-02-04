@@ -188,10 +188,24 @@ mapImage.onload = () => {
     .then(r => r.text())
     .then(text => {
       const hexData = {};
-      text.split('\n').forEach(line => {
-        const m = line.match(/^(\d+)\.\s+(.+?)\s+(.+)$/);
-        if (m) hexData[m[1]] = { type: m[2], backImage: m[3] };
-      });
+      text.split(/\r?\n/).forEach(line => {
+  line = line.trim();
+  if (!line) return;
+
+  const firstDot = line.indexOf('.');
+  if (firstDot === -1) return;
+
+  const num = line.slice(0, firstDot).trim();
+  const rest = line.slice(firstDot + 1).trim();
+
+  const lastSpace = rest.lastIndexOf(' ');
+  if (lastSpace === -1) return;
+
+  const type = rest.slice(0, lastSpace).trim();
+  const backImage = rest.slice(lastSpace + 1).trim();
+
+  hexData[num] = { type, backImage };
+});
 
       layout.forEach((rowData, rowIndex) => {
         const row = document.createElement('div');
@@ -236,3 +250,4 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
