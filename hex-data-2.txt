@@ -1,13 +1,13 @@
-1. Home Hex flipped custodes.jpg 
-2. Home Hex flipped dark-angels.jpg
+1. Home Hex custodes.jpg flipped
+2. Home Hex dark-angels.jpg flipped
 3. Blank Hex contested.jpg
 4. Blank Hex contested.jpg
 5. Hive City contested.jpg
 6. Supply Hub (Round 1 Event) contested.jpg
 7. Ash Wastes contested.jpg
 8. Blank Hex contested.jpg
-9. Home Hex flipped grey-knights.jpg
-10. Home Hex flipped raptors.jpg
+9. Home Hex grey-knights.jpg flipped
+10. Home Hex raptors.jpg flipped
 11. Blank Hex contested.jpg
 12. Manufactorum contested.jpg
 13. Blank Hex contested.jpg
@@ -70,6 +70,7 @@
 70. Blank Hex contested.jpg
 71. Home Hex tau.jpg
 72. Home Hex votann.jpg
+
 
 
 
