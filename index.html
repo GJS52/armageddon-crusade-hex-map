@@ -268,7 +268,7 @@ mapImage.onload = () => {
             </div>`;
 
           // Set initial flipped state: either from hex-data flipped, home type, or localStorage
-          if (data.flipped || savedFlips[num] === 'flipped' || (!savedFlips[num] && data.type.toLowerCase() === 'Home Hex')) {
+          if (data.flipped || savedFlips[num] === 'flipped' || (!savedFlips[num])) {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
           }
@@ -294,3 +294,4 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
