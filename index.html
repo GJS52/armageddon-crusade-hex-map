@@ -216,6 +216,7 @@ mapImage.onload = () => {
         hexData[num] = { type, backImage };
       });
 
+      // Load saved flipped state
       const savedFlips = JSON.parse(localStorage.getItem('flippedHexes') || '{}');
 
       layout.forEach((rowData, rowIndex) => {
@@ -252,7 +253,11 @@ mapImage.onload = () => {
             hex.addEventListener('click', () => {
               if (hex.classList.contains('permanent-flipped')) return;
               hex.classList.toggle('flipped');
-              savedFlips[num] = hex.classList.contains('flipped') ? 'flipped' : null;
+              if (hex.classList.contains('flipped')) {
+                savedFlips[num] = 'flipped';
+              } else {
+                delete savedFlips[num];
+              }
               localStorage.setItem('flippedHexes', JSON.stringify(savedFlips));
             });
 
