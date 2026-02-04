@@ -3,7 +3,7 @@
 3. Blank Hex contested.jpg
 4. Blank Hex contested.jpg
 5. Hive City contested.jpg
-6. Supply Hub_(Round 1 Event) contested.jpg
+6. Supply Hub (Round 1 Event) contested.jpg
 7. Ash Wastes contested.jpg
 8. Blank Hex contested.jpg
 9. Home Hex contested.jpg
@@ -11,14 +11,14 @@
 11. Blank Hex contested.jpg
 12. Manufactorum contested.jpg
 13. Blank Hex contested.jpg
-14. Hive City_(Round 1 Event) contested.jpg
+14. Hive City (Round 1 Event) contested.jpg
 15. Ash Wastes contested.jpg
 16. Blank Hex contested.jpg
 17. Hive City contested.jpg
 18. Blank Hex contested.jpg
 19. Blank Hex contested.jpg
 20. Supply Hub contested.jpg
-21. Ash Wastes_(Round 1 Event) contested.jpg
+21. Ash Wastes (Round 1 Event) contested.jpg
 22. Blank Hex contested.jpg
 23. Manufactorum contested.jpg
 24. Blank Hex contested.jpg
@@ -30,7 +30,7 @@
 30. Blank Hex contested.jpg
 31. Blank Hex contested.jpg
 32. Hive City contested.jpg
-33. Fortified Bastion_(Round 1 Event) contested.jpg
+33. Fortified Bastion (Round 1 Event) contested.jpg
 34. Blank Hex contested.jpg
 35. Manufactorum contested.jpg
 36. Blank Hex contested.jpg
@@ -58,7 +58,7 @@
 58. Blank Hex contested.jpg
 59. Hive City contested.jpg
 60. Blank Hex contested.jpg
-61. Warp-Scarred Zone_(Round 1 Event) contested.jpg
+61. Warp-Scarred Zone (Round 1 Event) contested.jpg
 62. Manufactorum contested.jpg
 63. Blank Hex contested.jpg
 64. Fortified Bastion contested.jpg
@@ -70,4 +70,5 @@
 70. Blank Hex contested.jpg
 71. Home Hex tau.jpg
 72. Home Hex votann.jpg
+
 
