@@ -234,9 +234,9 @@ mapImage.onload = () => {
         const parts = rest.split(' ');
 
         let flipped = false;
-        if (parts[0] && parts[0].toLowerCase() === 'flipped') {
+        if (parts[parts.length - 1] && parts[parts.length - 1].toLowerCase() === 'flipped') {
           flipped = true;
-          parts.splice(0, 1); // remove 'flipped'
+          parts.pop();
         }
 
         const type = parts[0];
@@ -272,7 +272,7 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Only flip on load if the keyword is present
+          // Flip only if keyword 'flipped' exists or saved in localStorage
           if (data.flipped || savedFlips[num] === 'flipped') {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
