@@ -83,6 +83,7 @@ body {
 }
 
 .front {
+  position: relative;
   background-image: url('map.jpg');
   background-size: var(--map-width) var(--map-height);
   background-position: var(--bg-x) var(--bg-y);
@@ -94,15 +95,18 @@ body {
 
 /* CENTER NUMBER ON MAP */
 .front-number {
+  position: relative;
+  z-index: 2;
   font-size: 28px;
   font-weight: 800;
   color: #fff;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   padding: 6px 14px;
   border-radius: 8px;
   text-shadow: 0 0 6px rgba(0,0,0,0.9);
   pointer-events: none;
 }
+
 
 
 .back {
@@ -317,6 +321,7 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
 
 
