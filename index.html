@@ -230,17 +230,20 @@ mapImage.onload = () => {
         const firstDot = line.indexOf('.');
         if (firstDot === -1) return;
         const num = line.slice(0, firstDot).trim();
-        const rest = line.slice(firstDot + 1).trim();
-        const parts = rest.split(' ');
+        let rest = line.slice(firstDot + 1).trim();
 
+        // Check for flipped at end
         let flipped = false;
-        if (parts[parts.length - 1] && parts[parts.length - 1].toLowerCase() === 'flipped') {
+        if (rest.toLowerCase().endsWith('flipped')) {
           flipped = true;
-          parts.pop();
+          rest = rest.slice(0, -7).trim(); // remove 'flipped'
         }
 
-        const type = parts[0];
-        const backImage = parts[1] || '';
+        // Split rest: last word is image, rest is type
+        const lastSpace = rest.lastIndexOf(' ');
+        const type = rest.slice(0, lastSpace).trim();
+        const backImage = rest.slice(lastSpace + 1).trim();
+
         hexData[num] = { type, backImage, flipped };
       });
 
