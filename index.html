@@ -87,8 +87,7 @@ body {
   text-align: center;
 }
 
-.hex.flipped .hex-inner,
-.hex.permanent-flipped .hex-inner {
+.hex.flipped .hex-inner {
   transform: rotateY(180deg);
 }
 
@@ -120,16 +119,13 @@ body {
 </div>
 
 <script>
-/* ================= OWNER PERMISSION ================= */
 const OWNER_PASSWORD = "changeme";
 const IS_OWNER = prompt("Enter control password:") === OWNER_PASSWORD;
 
-/* ================= MUSIC ================= */
 const music = document.getElementById('bgMusic');
 music.volume = 0.75;
 music.play().catch(() => {});
 
-/* ================= ZOOM & PAN ================= */
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 let scale = window.innerWidth < 768 ? 0.7 : 1;
@@ -173,7 +169,6 @@ mapWrapper.addEventListener('touchmove', e => {
 window.addEventListener('touchend', () => isDragging = false);
 updateTransform();
 
-/* ================= HEX MAP ================= */
 const HEX_W = 100;
 const HEX_H = 115;
 const layout = [
@@ -216,7 +211,6 @@ mapImage.onload = () => {
         hexData[num] = { type, backImage };
       });
 
-      // Load saved flipped state
       const savedFlips = JSON.parse(localStorage.getItem('flippedHexes') || '{}');
 
       layout.forEach((rowData, rowIndex) => {
@@ -245,26 +239,19 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Apply saved flip state
-          if (savedFlips[num] === 'flipped') hex.classList.add('flipped');
-          if (savedFlips[num] === 'permanent') hex.classList.add('permanent-flipped');
+          // Start flipped if saved flipped or type is Home
+          if (savedFlips[num] === 'flipped' || data.type.toLowerCase() === 'home') {
+            hex.classList.add('flipped');
+          }
 
           if (IS_OWNER) {
             hex.addEventListener('click', () => {
-              if (hex.classList.contains('permanent-flipped')) return;
               hex.classList.toggle('flipped');
               if (hex.classList.contains('flipped')) {
                 savedFlips[num] = 'flipped';
               } else {
                 delete savedFlips[num];
               }
-              localStorage.setItem('flippedHexes', JSON.stringify(savedFlips));
-            });
-
-            hex.addEventListener('contextmenu', e => {
-              e.preventDefault();
-              hex.classList.add('permanent-flipped');
-              savedFlips[num] = 'permanent';
               localStorage.setItem('flippedHexes', JSON.stringify(savedFlips));
             });
           }
