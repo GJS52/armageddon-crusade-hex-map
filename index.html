@@ -237,7 +237,7 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  fetch('hex-data-2.txt?t=' + new Date().getTime())
+  fetch('hex-data-3.txt?t=' + new Date().getTime())
     .then(r => r.text())
     .then(text => {
       const hexData = {};
@@ -318,4 +318,5 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
