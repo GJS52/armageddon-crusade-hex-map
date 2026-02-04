@@ -193,7 +193,8 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  fetch('hex-data.txt')
+  // Cache-busting fetch to always get latest hex-data.txt
+  fetch('hex-data.txt?t=' + new Date().getTime())
     .then(r => r.text())
     .then(text => {
       const hexData = {};
@@ -239,9 +240,12 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Start flipped if saved flipped or type is Home
-          if (savedFlips[num] === 'flipped' || data.type.toLowerCase() === 'Home Hex') {
+          // Start flipped if saved flipped, or if type is Home and no saved flip exists
+          if (savedFlips[num] === 'flipped') {
             hex.classList.add('flipped');
+          } else if (!savedFlips[num] && data.type.toLowerCase() === 'Home Hex') {
+            hex.classList.add('flipped');
+            savedFlips[num] = 'flipped';
           }
 
           if (IS_OWNER) {
@@ -265,5 +269,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
-
