@@ -62,11 +62,12 @@
 62. Manufactorum contested.jpg
 63. Blank Hex contested.jpg
 64. Fortified Bastion contested.jpg
-65. Blank Hex contested.jpg
-66. Ash Wastes contested.jpg
+65. Home Hex necron.jpg
+66. Home Hex orks.jpg
 67. Blank Hex contested.jpg
-68. Home Hex contested.jpg
-69. Home Hex contested.jpg
+68. Blank Hex contested.jpg
+69. Ash Wastes contested.jpg
 70. Blank Hex contested.jpg
-71. Home Hex contested.jpg
-72. Home Hex contested.jpg
+71. Home Hex tau.jpg
+72. Home Hex votann.jpg
+
