@@ -103,8 +103,8 @@ box-shadow:
 .front-number {
   position: relative;
   z-index: 2;
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   color: #fff;
   background: rgba(0,0,0,0.6);
   padding: 6px 14px;
@@ -235,7 +235,7 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  fetch('hex-data-2.txt?t=' + Date.now())
+  fetch('hex-data-3.txt?t=' + Date.now())
     .then(r => r.text())
     .then(text => {
       const hexData = {};
@@ -309,5 +309,6 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
 
