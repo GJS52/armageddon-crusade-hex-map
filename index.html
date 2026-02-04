@@ -234,9 +234,9 @@ mapImage.onload = () => {
         const parts = rest.split(' ');
         if (parts.length < 2) return;
         const flipFlag = parts[parts.length - 1].toLowerCase() === 'flipped' ? 'flipped' : '';
-        const backImage = flipFlag === 'flipped' ? '' : parts[parts.length - 1];
-        const type = parts.slice(0, parts.length - 1 - (flipFlag === 'flipped' ? 0 : 1)).join(' ');
-        hexData[num] = { type, backImage, flipped: flipFlag === 'flipped' };
+const backImage = parts[parts.length - 1 - (flipFlag ? 1 : 0)];
+const type = parts.slice(0, parts.length - 1 - (flipFlag ? 1 : 0)).join(' ');
+hexData[num] = { type, backImage, flipped: flipFlag === 'flipped' };
       });
 
       const savedFlips = JSON.parse(localStorage.getItem('flippedHexes') || '{}');
@@ -294,4 +294,5 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
