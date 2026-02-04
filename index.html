@@ -64,7 +64,7 @@ body {
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   position: relative;
   perspective: 800px;
-  border: 3px solid rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.4);
   transition: box-shadow 0.25s ease;
 }
 
@@ -87,7 +87,6 @@ body {
 
 /* ================= FRONT (MAP SIDE) ================= */
 .front {
-  position: relative;
   background-image: url('map.jpg');
   background-size: var(--map-width) var(--map-height);
   background-position: var(--bg-x) var(--bg-y);
@@ -97,21 +96,17 @@ body {
   justify-content: center;
 }
 
-
 /* CENTER NUMBER ON MAP */
 .front-number {
-  position: relative;
-  z-index: 2;
-  font-size: 16px;
+  font-size: 28px;
   font-weight: 800;
   color: #fff;
-  background: rgba(0,0,0,0.6);
-  padding: 3px 7px;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 14px;
   border-radius: 8px;
   text-shadow: 0 0 6px rgba(0,0,0,0.9);
   pointer-events: none;
 }
-
 
 /* ================= BACK (INFO SIDE) ================= */
 .back {
@@ -234,7 +229,7 @@ mapImage.onload = () => {
   const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
   const gridHeight = (layout.length - 1) * stepY + HEX_H;
 
-  fetch('hex-data-3.txt?t=' + Date.now())
+  fetch('hex-data-2.txt?t=' + Date.now())
     .then(r => r.text())
     .then(text => {
       const hexData = {};
@@ -308,5 +303,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
-
