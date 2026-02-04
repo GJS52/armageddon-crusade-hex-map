@@ -172,11 +172,32 @@ musicButton.addEventListener('click', () => {
 });
 
 /* ================= PAN / ZOOM ================= */
+/* ================= PAN / ZOOM ================= */
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
-let scale = window.innerWidth < 768 ? 0.7 : 1;
+
 let translateX = 0, translateY = 0;
 let dragging = false, startX, startY;
+
+// Set initial scale to fit map in view
+function setInitialScale() {
+  const mapRows = document.querySelectorAll('.row');
+  const HEX_W = 100;
+  const HEX_H = 115;
+  const stepY = HEX_H * 0.75;
+  const layoutLength = mapRows.length;
+  const maxCols = Math.max(...Array.from(mapRows).map(r => r.children.length));
+
+  const mapWidth = maxCols * HEX_W + HEX_W/2; // account for offset
+  const mapHeight = (layoutLength - 1) * stepY + HEX_H;
+
+  const scaleX = window.innerWidth / mapWidth;
+  const scaleY = window.innerHeight / mapHeight;
+
+  return Math.min(scaleX, scaleY, 1); // never scale >1
+}
+
+let scale = 1;
 
 function updateTransform() {
   map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
@@ -198,6 +219,30 @@ window.addEventListener('mousemove', e => {
   if (!dragging) return;
   translateX = e.clientX - startX;
   translateY = e.clientY - startY;
+  updateTransform();
+});
+mapWrapper.addEventListener('touchstart', e => {
+  dragging = true;
+  const t = e.touches[0];
+  startX = t.clientX - translateX;
+  startY = t.clientY - translateY;
+});
+mapWrapper.addEventListener('touchmove', e => {
+  if (!dragging) return;
+  const t = e.touches[0];
+  translateX = t.clientX - startX;
+  translateY = t.clientY - startY;
+  updateTransform();
+});
+window.addEventListener('touchend', () => dragging = false);
+
+// Wait until hexes are created, then set initial scale
+window.addEventListener('load', () => {
+  scale = setInitialScale();
+  // center the map
+  const mapBounds = map.getBoundingClientRect();
+  translateX = (window.innerWidth - mapBounds.width * scale) / 2;
+  translateY = (window.innerHeight - mapBounds.height * scale) / 2;
   updateTransform();
 });
 
@@ -308,6 +353,7 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
 
 
