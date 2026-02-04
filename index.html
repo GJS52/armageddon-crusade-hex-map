@@ -232,14 +232,12 @@ mapImage.onload = () => {
         const num = line.slice(0, firstDot).trim();
         let rest = line.slice(firstDot + 1).trim();
 
-        // Check for flipped at end
         let flipped = false;
         if (rest.toLowerCase().endsWith('flipped')) {
           flipped = true;
-          rest = rest.slice(0, -7).trim(); // remove 'flipped'
+          rest = rest.slice(0, -7).trim();
         }
 
-        // Split rest: last word is image, rest is type
         const lastSpace = rest.lastIndexOf(' ');
         const type = rest.slice(0, lastSpace).trim();
         const backImage = rest.slice(lastSpace + 1).trim();
@@ -247,6 +245,7 @@ mapImage.onload = () => {
         hexData[num] = { type, backImage, flipped };
       });
 
+      // Load saved manual flips
       const savedFlips = JSON.parse(localStorage.getItem('flippedHexes') || '{}');
 
       layout.forEach((rowData, rowIndex) => {
@@ -275,8 +274,8 @@ mapImage.onload = () => {
               </div>
             </div>`;
 
-          // Flip only if keyword 'flipped' exists or saved in localStorage
-          if (data.flipped || savedFlips[num] === 'flipped') {
+          // Flip only if 'flipped' keyword exists in the file
+          if (data.flipped) {
             hex.classList.add('flipped');
             savedFlips[num] = 'flipped';
           }
@@ -302,4 +301,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
