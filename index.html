@@ -348,11 +348,23 @@ mapImage.onload = () => {
 
         map.appendChild(row);
       });
+      // Center the map on page load
+function centerMap() {
+  const mapBounds = map.getBoundingClientRect();
+  translateX = (window.innerWidth - mapBounds.width) / 2;
+  translateY = (window.innerHeight - mapBounds.height) / 2;
+  map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+}
+
+centerMap(); // call immediately after building the map
+window.addEventListener('resize', centerMap); // recenter on window resize
+
     });
 };
 </script>
 </body>
 </html>
+
 
 
 
