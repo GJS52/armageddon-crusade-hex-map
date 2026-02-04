@@ -90,25 +90,24 @@ body {
   transform: rotateY(180deg);
 }
 
-.hex-name {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-align: center;
-  text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
-}
-
 .hex-number {
   font-size: 12px;
   font-weight: 500;
-  margin-top: 2px;
+  margin-bottom: 2px;
   opacity: 0.8;
+}
+
+.hex-name {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
 }
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" src="music.mp3" loop></audio>
+<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
 
 <div class="map-wrapper" id="mapWrapper">
   <div class="map" id="hexMap"></div>
@@ -121,16 +120,8 @@ const IS_OWNER = prompt("Enter control password:") === OWNER_PASSWORD;
 
 /* ================= MUSIC ================= */
 const music = document.getElementById('bgMusic');
-music.volume = 0.5;
-let musicStarted = false;
-function startMusic() {
-  if (!musicStarted) {
-    music.play().catch(() => {});
-    musicStarted = true;
-  }
-}
-document.addEventListener('click', startMusic, { once: true });
-document.addEventListener('touchstart', startMusic, { once: true });
+music.volume = 0.75;
+music.play().catch(() => {});
 
 /* ================= ZOOM & PAN ================= */
 const mapWrapper = document.getElementById('mapWrapper');
