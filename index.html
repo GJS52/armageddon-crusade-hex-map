@@ -100,17 +100,23 @@ body {
 
 /* CENTER NUMBER ON MAP */
 .front-number {
-  position: relative;
-  z-index: 2;
-  font-size: 28px;
-  font-weight: 800;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 16px;
+  font-weight: 700;
   color: #fff;
+
   background: rgba(0,0,0,0.6);
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+
   text-shadow: 0 0 6px rgba(0,0,0,0.9);
   pointer-events: none;
 }
+
 
 /* ================= BACK (INFO SIDE) ================= */
 .back {
@@ -307,3 +313,4 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
