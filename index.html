@@ -228,13 +228,14 @@ mapImage.onload = () => {
           const data = hexData[num] || { type: 'Blank', backImage: '' };
 
           hex.innerHTML = `
-            <div class="hex-inner">
-              <div class="front"></div>
-              <div class="back" style="background-image:url('${data.backImage}')">
-                <div class="hex-name">${data.type}</div>
-                <div class="hex-number">${num}</div>
-              </div>
-            </div>`;
+  <div class="hex-inner">
+    <div class="front"></div>
+    <div class="back" style="background-image:url('${data.backImage}')">
+      <div class="hex-name">${data.type}</div>
+      <div class="hex-number">${num}</div>
+    </div>
+  </div>`;
+
 
           if (IS_OWNER) {
             hex.addEventListener('click', () => {
@@ -256,4 +257,5 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
