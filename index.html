@@ -242,20 +242,30 @@ mapImage.onload = () => {
     .then(text => {
       const hexData = {};
 
-      text.split(/\r?\n/).forEach(line => {
-        const dot = line.indexOf('.');
-        if (dot === -1) return;
+     text.split(/\r?\n/).forEach(line => {
+  line = line.trim();
+  if (!line) return;
 
-        const num = line.slice(0, dot).trim();
-        const rest = line.slice(dot + 1).trim();
-        const lastSpace = rest.lastIndexOf(' ');
+  const dot = line.indexOf('.');
+  if (dot === -1) return;
 
-        hexData[num] = {
-          type: rest.slice(0, lastSpace),
-          backImage: rest.slice(lastSpace + 1),
-          flipped: rest.toLowerCase().endsWith('flipped')
-        };
-      });
+  const num = line.slice(0, dot).trim();
+  let rest = line.slice(dot + 1).trim();
+
+  let flipped = false;
+  if (rest.toLowerCase().endsWith('flipped')) {
+    flipped = true;
+    rest = rest.slice(0, -7).trim(); // remove "flipped"
+  }
+
+  const lastSpace = rest.lastIndexOf(' ');
+  if (lastSpace === -1) return;
+
+  const type = rest.slice(0, lastSpace).trim();
+  const backImage = rest.slice(lastSpace + 1).trim();
+
+  hexData[num] = { type, backImage, flipped };
+});
 
       layout.forEach((rowData, rowIndex) => {
         const row = document.createElement('div');
@@ -316,3 +326,4 @@ window.addEventListener('resize', fitAndCenterMap);
 </script>
 </body>
 </html>
+
