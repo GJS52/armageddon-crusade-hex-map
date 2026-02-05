@@ -1,1 +1,318 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <title>Armageddon, the planet of eternal war</title> <style> body { margin: 0; min-height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; background-image: url('background-armageddon.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; font-family: Arial, sans-serif; color: #fff; touch-action: none; } /* ================= MUSIC BUTTON ================= */ #musicButton { position: fixed; top: 10px; right: 10px; z-index: 1000; padding: 8px 14px; background: #fff; color: #000; font-weight: bold; border-radius: 6px; cursor: pointer; user-select: none; } /* ================= MAP ================= */ .map-wrapper { position: relative; cursor: grab; } .map { display: flex; flex-direction: column; transform-origin: center center; transition: transform 0.15s ease-out; } .row { display: flex; } .row.offset { margin-left: 50px; } /* ================= HEX ================= */ .hex { width: 100px; height: 115px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); position: relative; perspective: 800px; border: 1px solid rgba(0,0,0,0.4); transition: box-shadow 0.25s ease; } .hex:hover { box-shadow: 0 0 15px rgba(255,255,255,0.6); } .hex-inner { width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; } .front, .back { position: absolute; inset: 0; backface-visibility: hidden; } /* ================= FRONT (MAP SIDE) ================= */ .front { background-image: url('map.jpg'); background-size: var(--map-width) var(--map-height); background-position: var(--bg-x) var(--bg-y); background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; } /* CENTER NUMBER ON MAP */ .front-number { font-size: 28px; font-weight: 800; color: #fff; background: rgba(0,0,0,0.55); padding: 6px 14px; border-radius: 8px; text-shadow: 0 0 6px rgba(0,0,0,0.9); pointer-events: none; } /* ================= BACK (INFO SIDE) ================= */ .back { transform: rotateY(180deg); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px; text-align: center; } .hex.flipped .hex-inner { transform: rotateY(180deg); } .hex-name { font-size: 14px; font-weight: 700; text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6); max-width: 90%; line-height: 1.2em; } .hex-number { font-size: 12px; font-weight: 500; opacity: 0.85; margin-top: 4px; } </style> </head> <body> <div id="musicButton">Play Music</div> <audio id="bgMusic" src="music.mp3" loop autoplay></audio> <div class="map-wrapper" id="mapWrapper"> <div class="map" id="hexMap"></div> </div> <script> /* ================= OWNER ================= */ const OWNER_PASSWORD = "joseph"; const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD; /* ================= MUSIC ================= */ const music = document.getElementById('bgMusic'); music.volume = 0.75; const musicButton = document.getElementById('musicButton'); musicButton.addEventListener('click', () => { if (music.paused) { music.play(); musicButton.textContent = 'Pause Music'; } else { music.pause(); musicButton.textContent = 'Play Music'; } }); /* ================= PAN / ZOOM ================= */ /* ================= PAN / ZOOM ================= */ const mapWrapper = document.getElementById('mapWrapper'); const map = document.getElementById('hexMap'); let translateX = 0, translateY = 0; let dragging = false, startX, startY; // Set initial scale to fit map in view function setInitialScale() { const mapRows = document.querySelectorAll('.row'); const HEX_W = 100; const HEX_H = 115; const stepY = HEX_H * 0.75; const layoutLength = mapRows.length; const maxCols = Math.max(...Array.from(mapRows).map(r => r.children.length)); const mapWidth = maxCols * HEX_W + HEX_W/2; // account for offset const mapHeight = (layoutLength - 1) * stepY + HEX_H; const scaleX = window.innerWidth / mapWidth; const scaleY = window.innerHeight / mapHeight; return Math.min(scaleX, scaleY, 1); // never scale >1 } let scale = 1; function updateTransform() { map.style.transform = translate(${translateX}px, ${translateY}px) scale(${scale}); } mapWrapper.addEventListener('wheel', e => { e.preventDefault(); scale = Math.min(2, Math.max(0.5, scale + e.deltaY * -0.001)); updateTransform(); }); mapWrapper.addEventListener('mousedown', e => { dragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY; }); window.addEventListener('mouseup', () => dragging = false); window.addEventListener('mousemove', e => { if (!dragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(); }); mapWrapper.addEventListener('touchstart', e => { dragging = true; const t = e.touches[0]; startX = t.clientX - translateX; startY = t.clientY - translateY; }); mapWrapper.addEventListener('touchmove', e => { if (!dragging) return; const t = e.touches[0]; translateX = t.clientX - startX; translateY = t.clientY - startY; updateTransform(); }); window.addEventListener('touchend', () => dragging = false); // Wait until hexes are created, then set initial scale window.addEventListener('load', () => { scale = setInitialScale(); // center the map const mapBounds = map.getBoundingClientRect(); translateX = (window.innerWidth - mapBounds.width * scale) / 2; translateY = (window.innerHeight - mapBounds.height * scale) / 2; updateTransform(); }); /* ================= LAYOUT ================= */ const HEX_W = 100; const HEX_H = 115; const layout = [ [1,2,3,4,5,6,7,8,9,10], [11,12,13,14,15,16,17,18,19,20], [21,22,23,24,25,26,27,28,29,30], [31,32,33,34,35,36,37,38,39,40], [41,42,43,44,45,46,47,48,49,50], [51,52,53,54,55,56,57,58,59,60], [61,62,63,64,65,66,67,68,69,70], [71,72,73,74,75,76,77,78,79,80], [81,82,83,84,85,86,87,88,89,90], [91,92,93,94,95,96,97,98,99,100], [101,102,103,104,105,106,107,108,109,110], [111,112,113,114,115,116,117,118,119,120], [121,122] ]; /* ================= MAP IMAGE ================= */ const mapImage = new Image(); mapImage.src = 'map.jpg'; mapImage.onload = () => { document.documentElement.style.setProperty('--map-width', mapImage.width + 'px'); document.documentElement.style.setProperty('--map-height', mapImage.height + 'px'); const stepY = HEX_H * 0.75; const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W; const gridHeight = (layout.length - 1) * stepY + HEX_H; fetch('hex-data-3.txt?t=' + Date.now()) .then(r => r.text()) .then(text => { const hexData = {}; text.split(/\r?\n/).forEach(line => { line = line.trim(); if (!line) return; const dot = line.indexOf('.'); if (dot === -1) return; const num = line.slice(0, dot).trim(); let rest = line.slice(dot + 1).trim(); let flipped = false; if (rest.toLowerCase().endsWith('flipped')) { flipped = true; rest = rest.slice(0, -7).trim(); } const lastSpace = rest.lastIndexOf(' '); const type = rest.slice(0, lastSpace).trim(); const backImage = rest.slice(lastSpace + 1).trim(); hexData[num] = { type, backImage, flipped }; }); layout.forEach((rowData, rowIndex) => { const row = document.createElement('div'); row.className = 'row' + (rowIndex % 2 ? ' offset' : ''); row.style.marginTop = rowIndex ? -${HEX_H * 0.25}px : '0'; rowData.forEach((num, colIndex) => { const hex = document.createElement('div'); hex.className = 'hex'; const xF = (colIndex * HEX_W + (rowIndex % 2) * HEX_W / 2) / gridWidth; const yF = (rowIndex * stepY) / gridHeight; hex.style.setProperty('--bg-x', ${-xF * mapImage.width}px); hex.style.setProperty('--bg-y', ${-yF * mapImage.height}px); const data = hexData[num] || { type: 'Blank', backImage: '', flipped: false }; hex.innerHTML = <div class="hex-inner"> <div class="front"> <div class="front-number">${num}</div> </div> <div class="back" style="background-image:url('${data.backImage}')"> <div class="hex-name">${data.type}</div> <div class="hex-number">${num}</div> </div> </div>; if (data.flipped) hex.classList.add('flipped'); if (IS_OWNER) { hex.addEventListener('click', () => { hex.classList.toggle('flipped'); }); } row.appendChild(hex); }); map.appendChild(row); }); // Center the map on page load function centerMap() { const mapBounds = map.getBoundingClientRect(); translateX = (window.innerWidth - mapBounds.width) / 2; translateY = (window.innerHeight - mapBounds.height) / 2; map.style.transform = translate(${translateX}px, ${translateY}px) scale(${scale}); } centerMap(); // call immediately after building the map window.addEventListener('resize', centerMap); // recenter on window resize }); }; </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Armageddon, the planet of eternal war</title>
+
+<!-- MOBILE OPTIMIZATION -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('background-armageddon.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  touch-action: none;
+}
+
+/* ================= MUSIC BUTTON ================= */
+#musicButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 8px 14px;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ================= MAP ================= */
+.map-wrapper {
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+  transform-origin: 0 0;
+  transition: transform 0.15s ease-out;
+}
+
+.row {
+  display: flex;
+}
+
+.row.offset {
+  margin-left: 50px;
+}
+
+/* ================= HEX ================= */
+.hex {
+  width: 100px;
+  height: 115px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  position: relative;
+  perspective: 800px;
+  border: 1px solid rgba(0,0,0,0.4);
+  transition: box-shadow 0.25s ease;
+}
+
+.hex:hover {
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
+
+.hex-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.front, .back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+/* ================= FRONT ================= */
+.front {
+  background-image: url('map.jpg');
+  background-size: var(--map-width) var(--map-height);
+  background-position: var(--bg-x) var(--bg-y);
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9);
+  pointer-events: none;
+}
+
+/* ================= BACK ================= */
+.back {
+  transform: rotateY(180deg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  text-align: center;
+}
+
+.hex.flipped .hex-inner {
+  transform: rotateY(180deg);
+}
+
+.hex-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hex-number {
+  font-size: 12px;
+  opacity: 0.85;
+}
+</style>
+</head>
+
+<body>
+
+<div id="musicButton">Play Music</div>
+<audio id="bgMusic" src="music.mp3" loop autoplay></audio>
+
+<div class="map-wrapper" id="mapWrapper">
+  <div class="map" id="hexMap"></div>
+</div>
+
+<script>
+/* ================= OWNER ================= */
+const OWNER_PASSWORD = "joseph";
+const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD;
+
+/* ================= MUSIC ================= */
+const music = document.getElementById('bgMusic');
+music.volume = 0.75;
+
+document.getElementById('musicButton').onclick = () => {
+  if (music.paused) {
+    music.play();
+    musicButton.textContent = 'Pause Music';
+  } else {
+    music.pause();
+    musicButton.textContent = 'Play Music';
+  }
+};
+
+/* ================= PAN / ZOOM ================= */
+const mapWrapper = document.getElementById('mapWrapper');
+const map = document.getElementById('hexMap');
+
+let scale = 1;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX, startY;
+
+function updateTransform() {
+  map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+}
+
+mapWrapper.addEventListener('wheel', e => {
+  e.preventDefault();
+  scale = Math.min(2, Math.max(0.4, scale - e.deltaY * 0.001));
+  updateTransform();
+});
+
+mapWrapper.addEventListener('mousedown', e => {
+  dragging = true;
+  startX = e.clientX - translateX;
+  startY = e.clientY - translateY;
+});
+
+window.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  translateX = e.clientX - startX;
+  translateY = e.clientY - startY;
+  updateTransform();
+});
+
+window.addEventListener('mouseup', () => dragging = false);
+
+/* ================= LAYOUT ================= */
+const HEX_W = 100;
+const HEX_H = 115;
+
+const layout = [
+  [1,2,3,4,5,6,7,8,9,10],
+  [11,12,13,14,15,16,17,18,19,20],
+  [21,22,23,24,25,26,27,28,29,30],
+  [31,32,33,34,35,36,37,38,39,40],
+  [41,42,43,44,45,46,47,48,49,50],
+  [51,52,53,54,55,56,57,58,59,60],
+  [61,62,63,64,65,66,67,68,69,70],
+  [71,72,73,74,75,76,77,78,79,80],
+  [81,82,83,84,85,86,87,88,89,90],
+  [91,92,93,94,95,96,97,98,99,100],
+  [101,102,103,104,105,106,107,108,109,110],
+  [111,112,113,114,115,116,117,118,119,120],
+  [121,122]
+];
+
+/* ================= MAP IMAGE ================= */
+const mapImage = new Image();
+mapImage.src = 'map.jpg';
+
+mapImage.onload = () => {
+  document.documentElement.style.setProperty('--map-width', mapImage.width + 'px');
+  document.documentElement.style.setProperty('--map-height', mapImage.height + 'px');
+
+  const stepY = HEX_H * 0.75;
+  const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
+  const gridHeight = (layout.length - 1) * stepY + HEX_H;
+
+  fetch('hex-data-3.txt?t=' + Date.now())
+    .then(r => r.text())
+    .then(text => {
+      const hexData = {};
+
+      text.split(/\r?\n/).forEach(line => {
+        const dot = line.indexOf('.');
+        if (dot === -1) return;
+
+        const num = line.slice(0, dot).trim();
+        const rest = line.slice(dot + 1).trim();
+        const lastSpace = rest.lastIndexOf(' ');
+
+        hexData[num] = {
+          type: rest.slice(0, lastSpace),
+          backImage: rest.slice(lastSpace + 1),
+          flipped: rest.toLowerCase().endsWith('flipped')
+        };
+      });
+
+      layout.forEach((rowData, rowIndex) => {
+        const row = document.createElement('div');
+        row.className = 'row' + (rowIndex % 2 ? ' offset' : '');
+        row.style.marginTop = rowIndex ? `-${HEX_H * 0.25}px` : '0';
+
+        rowData.forEach((num, colIndex) => {
+          const hex = document.createElement('div');
+          hex.className = 'hex';
+
+          const xF = (colIndex * HEX_W + (rowIndex % 2) * HEX_W / 2) / gridWidth;
+          const yF = (rowIndex * stepY) / gridHeight;
+
+          hex.style.setProperty('--bg-x', `${-xF * mapImage.width}px`);
+          hex.style.setProperty('--bg-y', `${-yF * mapImage.height}px`);
+
+          const data = hexData[num] || {};
+
+          hex.innerHTML = `
+            <div class="hex-inner">
+              <div class="front"><div class="front-number">${num}</div></div>
+              <div class="back" style="background-image:url('${data.backImage || ''}')">
+                <div class="hex-name">${data.type || ''}</div>
+                <div class="hex-number">${num}</div>
+              </div>
+            </div>
+          `;
+
+          if (data.flipped) hex.classList.add('flipped');
+          if (IS_OWNER) hex.onclick = () => hex.classList.toggle('flipped');
+
+          row.appendChild(hex);
+        });
+
+        map.appendChild(row);
+      });
+
+      requestAnimationFrame(fitAndCenterMap);
+    });
+};
+
+/* ================= FIT & CENTER ================= */
+function fitAndCenterMap() {
+  const bounds = map.getBoundingClientRect();
+  const padding = 20;
+
+  const scaleX = (window.innerWidth - padding) / bounds.width;
+  const scaleY = (window.innerHeight - padding) / bounds.height;
+
+  scale = Math.min(scaleX, scaleY, 1);
+  translateX = (window.innerWidth - bounds.width * scale) / 2;
+  translateY = (window.innerHeight - bounds.height * scale) / 2;
+
+  updateTransform();
+}
+
+window.addEventListener('resize', fitAndCenterMap);
+</script>
+</body>
+</html>
