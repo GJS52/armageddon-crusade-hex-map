@@ -1,0 +1,10 @@
+<b>HIVE CITY</b>***Effect: Winning player selects one unit that gains +1 XP.;
+<b>MANUFACTORUM</b>***Effect: Winning faction gains +1 Requisition Point (team pool).;
+<b>SPACEPORT</b>***One winning player may choose one infantry unit to start their next game in Deep Strike.;
+<b>ASH WASTES</b>***Effect: Winning player gains +1 Command Point at the start of Battle Round 1 in their next game.;
+<b>FORTIFIED BASTION</b>***Effect: Winning faction may re-roll one Out-of-Action test this round.;
+<b>WARP-SCARRED ZONE</b>***Effect: After the battle, the winning player rolls 1D6:<br>1: One unit gains a Battle Scar<br>2–3: No effect<br>4-5: One unit gains +1 XP<br>6: Gain +1 Requisition Point (team pool);
+
+
+
+
