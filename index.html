@@ -293,7 +293,30 @@ mapImage.onload = () => {
         map.appendChild(row);
       });
 
-      requestAnimationFrame(fitAndCenterMap);
+      // Center map after building
+function centerMap() {
+  const bounds = map.getBoundingClientRect();
+  const mapWidth = bounds.width * scale;
+  const mapHeight = bounds.height * scale;
+
+  translateX = (window.innerWidth - mapWidth) / 2;
+  translateY = (window.innerHeight - mapHeight) / 2;
+  updateTransform();
+}
+
+// Set initial scale
+const mapRows = document.querySelectorAll('.row');
+const stepY = HEX_H * 0.75;
+const layoutLength = mapRows.length;
+const maxCols = Math.max(...Array.from(mapRows).map(r => r.children.length));
+const gridWidth = maxCols * HEX_W;
+const gridHeight = (layoutLength - 1) * stepY + HEX_H;
+
+const scaleX = window.innerWidth / gridWidth;
+const scaleY = window.innerHeight / gridHeight;
+scale = Math.min(scaleX, scaleY, 1);
+
+centerMap();
     });
 };
 
@@ -316,3 +339,4 @@ window.addEventListener('resize', fitAndCenterMap);
 </script>
 </body>
 </html>
+
