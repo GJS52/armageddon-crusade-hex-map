@@ -299,20 +299,30 @@ mapImage.onload = () => {
 /* ================= FIT & CENTER ================= */
 function fitAndCenterMap() {
   const bounds = map.getBoundingClientRect();
-  const padding = 20;
 
+  // Center of the viewport
+  const viewportCenterX = window.innerWidth / 2;
+  const viewportCenterY = window.innerHeight / 2;
+
+  // Center of the map
+  const mapCenterX = bounds.width / 2;
+  const mapCenterY = bounds.height / 2;
+
+  // Scale to fit
+  const padding = 20;
   const scaleX = (window.innerWidth - padding) / bounds.width;
   const scaleY = (window.innerHeight - padding) / bounds.height;
-
   scale = Math.min(scaleX, scaleY, 1);
-  translateX = (window.innerWidth - bounds.width * scale) / 2;
-  translateY = (window.innerHeight - bounds.height * scale) / 2;
+
+  // Translate so map center aligns with viewport center
+  translateX = viewportCenterX - mapCenterX * scale;
+  translateY = viewportCenterY - mapCenterY * scale;
 
   updateTransform();
 }
 
-window.addEventListener('resize', fitAndCenterMap);
 </script>
 </body>
 </html>
+
 
