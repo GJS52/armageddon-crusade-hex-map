@@ -292,9 +292,11 @@ mapImage.onload = () => {
         map.appendChild(row);
       });
 
-      requestAnimationFrame(fitAndCenterMap);
+      // **Center map after all hexes are fully added**
+      setTimeout(() => fitAndCenterMap(), 0);
     });
 };
+
 
 /* ================= FIT & CENTER ================= */
 function fitAndCenterMap() {
@@ -324,5 +326,6 @@ function fitAndCenterMap() {
 </script>
 </body>
 </html>
+
 
 
