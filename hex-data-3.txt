@@ -1,128 +1,122 @@
 1. Home Hex custodes.jpg flipped
 2. Home Hex dark-angels.jpg flipped
-3. Blank Hex contested.jpg
-4. Blank Hex contested.jpg
-5. Hive City contested.jpg
-6. Supply Hub (Round 1 Event) contested.jpg
-7. Ash Wastes contested.jpg
-8. Blank Hex contested.jpg
-9. Blank Hex contested.jpg
+3. Warp-Scarred Zone contested.jpg
+4. Warp-Scarred Zone contested.jpg
+5. Manufactorum contested.jpg
+6. Spaceport contested.jpg
+7. Blank Hex contested.jpg
+8. Ash Wastes contested.jpg
+9. Special Event Hex contested.jpg
 10. Manufactorum contested.jpg
 11. Home Hex grey-knights.jpg flipped
 12. Home Hex raptors.jpg flipped
-13. Blank Hex contested.jpg
-14. Hive City (Round 1 Event) contested.jpg
-15. Ash Wastes contested.jpg
+13. Warp-Scarred Zone contested.jpg
+14. Spaceport contested.jpg
+15. Hive City contested.jpg
 16. Blank Hex contested.jpg
-17. Hive City contested.jpg
-18. Blank Hex contested.jpg
+17. Blank Hex contested.jpg
+18. Hive City contested.jpg
 19. Blank Hex contested.jpg
-20. Supply Hub contested.jpg
-21. Ash Wastes (Round 1 Event) contested.jpg
+20. Special Event Hex contested.jpg
+21. Blank Hex contested.jpg
 22. Blank Hex contested.jpg
-23. Manufactorum contested.jpg
-24. Blank Hex contested.jpg
+23. Hive City contested.jpg
+24. Fortified Bastion contested.jpg
 25. Ash Wastes contested.jpg
-26. Blank Hex contested.jpg
-27. Blank Hex contested.jpg
-28. Blank Hex contested.jpg
-29. Fortified Bastion contested.jpg
-30. Blank Hex contested.jpg
-31. Blank Hex contested.jpg
-32. Hive City contested.jpg
-33. Fortified Bastion (Round 1 Event) contested.jpg
-34. Blank Hex contested.jpg
-35. Manufactorum contested.jpg
-36. Blank Hex contested.jpg
-37. Blank Hex contested.jpg
-38. Blank Hex contested.jpg
-39. Blank Hex contested.jpg
-40. Ash Wastes contested.jpg
-41. Blank Hex contested.jpg
-42. Warp-Scarred Zone contested.jpg
+26. Manufactorum contested.jpg
+27. Hive City contested.jpg
+28. Hive City contested.jpg
+29. Hive City contested.jpg
+30. Warp-Scarred Zone contested.jpg
+31. Manufactorum contested.jpg
+32. Blank Hex contested.jpg
+33. Blank Hex contested.jpg
+34. Hive City contested.jpg
+35. Spaceport contested.jpg
+36. Fortified Bastion contested.jpg
+37. Manufactorum contested.jpg
+38. Manufactorum contested.jpg
+39. Ash Wastes contested.jpg
+40. Warp-Scarred Zone contested.jpg
+41. Spaceport contested.jpg
+42. Blank Hex contested.jpg
 43. Blank Hex contested.jpg
-44. Blank Hex contested.jpg
-45. Hive City contested.jpg
-46. Blank Hex contested.jpg
+44. Hive City contested.jpg
+45. Spaceport contested.jpg
+46. Fortified Bastion contested.jpg
 47. Blank Hex contested.jpg
-48. Blank Hex contested.jpg
-49. Manufactorum contested.jpg
+48. Spaceport contested.jpg
+49. Ash Wastes contested.jpg
 50. Home Hex thousand-sons.jpg flipped
-51. Blank Hex contested.jpg
-52. Ash Wastes contested.jpg
-53. Blank Hex contested.jpg
-54. Supply Hub contested.jpg
-55. Blank Hex contested.jpg
-56. Hive City contested.jpg
-57. Blank Hex contested.jpg
-58. Blank Hex contested.jpg
+51. Manufactorum contested.jpg
+52. Warp-Scarred Zone contested.jpg
+53. Warp-Scarred Zone contested.jpg
+54. Fortified Bastion contested.jpg
+55. Fortified Bastion contested.jpg
+56. Ash Wastes contested.jpg
+57. Hive City contested.jpg
+58. Hive City contested.jpg
 59. Home Hex world-eaters.jpg flipped
 60. Home Hex contested.jpg flipped
-61. Warp-Scarred Zone (Round 1 Event) contested.jpg
+61. Manufactorum contested.jpg
 62. Manufactorum contested.jpg
-63. Blank Hex contested.jpg
-64. Fortified Bastion contested.jpg
-65. Blank Hex contested.jpg
-66. Blank Hex contested.jpg
-67. Blank Hex contested.jpg
+63. Fortified Bastion contested.jpg
+64. Blank Hex contested.jpg
+65. Special Event Hex contested.jpg
+66. Warp-Scarred Zone contested.jpg
+67. Ash Wastes contested.jpg
 68. Blank Hex contested.jpg
-69. Ash Wastes contested.jpg
+69. Warp-Scarred Zone contested.jpg
 70. Home Hex death-guard.jpg flipped
-71. Blank Hex contested.jpg
-72. Blank Hex contested.jpg
-73. Blank Hex contested.jpg
-74. Hex74 contested.jpg
-75. Hex75 contested.jpg
-76. Hex76 contested.jpg
-77. Hex77 contested.jpg
-78. Hex78 contested.jpg
-79. Hex79 contested.jpg
-80. Hex80 contested.jpg
-81. Hex81 contested.jpg
-82. Hex82 contested.jpg
-83. Hex83 contested.jpg
-84. Hex84 contested.jpg
-85. Hex85 contested.jpg
-86. Hex86 contested.jpg
-87. Hex87 contested.jpg
-88. Hex88 contested.jpg
-89. Hex89 contested.jpg
-90. Hex90 contested.jpg
-91. Hex91 contested.jpg
-92. Hex92 contested.jpg
-93. Hex93 contested.jpg
-94. Hex94 contested.jpg
-95. Hex95 contested.jpg
-96. Hex96 contested.jpg
-97. Hex97 contested.jpg
-98. Hex98 contested.jpg
-99. Hex99 contested.jpg
-100. Hex100 contested.jpg
-101. Hex101 contested.jpg
-102. Hex102 contested.jpg
-103. Hex103 contested.jpg
-104. Hex104 contested.jpg
-105. Hex105 contested.jpg
-106. Hex106 contested.jpg
-107. Hex107 contested.jpg
-108. Hex108 contested.jpg
-109. Hex109 contested.jpg
-110. Hex110 contested.jpg
+71. Fortified Bastion contested.jpg
+72. Fortified Bastion contested.jpg
+73. Manufactorum contested.jpg
+74. Fortified Bastion contested.jpg
+75. Ash Wastes contested.jpg
+76. Blank Hex contested.jpg
+77. Blank Hex contested.jpg
+78. Blank Hex contested.jpg
+79. Fortified Bastion contested.jpg
+80. Special Event Hex contested.jpg
+81. Blank Hex contested.jpg
+82. Manufactorum contested.jpg
+83. Hive City contested.jpg
+84. Blank Hex contested.jpg
+85. Blank Hex contested.jpg
+86. Blank Hex contested.jpg
+87. Spaceport contested.jpg
+88. Special Event Hex contested.jpg
+89. Warp-Scarred Zone contested.jpg
+90. Blank Hex contested.jpg
+91. Warp-Scarred Zone contested.jpg
+92. Hive City contested.jpg
+93. Blank Hex contested.jpg
+94. Fortified Bastion contested.jpg
+95. Manufactorum contested.jpg
+96. Warp-Scarred Zone contested.jpg
+97. Manufactorum contested.jpg
+98. Warp-Scarred Zone contested.jpg
+99. Spaceport contested.jpg
+100. Blank Hex contested.jpg
+101. Fortified Bastion contested.jpg
+102. Ash Wastes contested.jpg
+103. Blank Hex contested.jpg
+104. Warp-Scarred Zone contested.jpg
+105. Blank Hex contested.jpg
+106. Ash Wastes contested.jpg
+107. Warp-Scarred Zone contested.jpg
+108. Hive City contested.jpg
+109. Blank Hex contested.jpg
+110. Fortified Bastion contested.jpg
 111. Home Hex necron.jpg flipped
 112. Home Hex orks.jpg flipped
-113. Hex113 contested.jpg
-114. Hex114 contested.jpg
-115. Hex115 contested.jpg
-116. Hex116 contested.jpg
-117. Hex117 contested.jpg
-118. Hex118 contested.jpg
-119. Hex119 contested.jpg
-120. Hex120 contested.jpg
+113. Blank Hex contested.jpg
+114. Blank Hex contested.jpg
+115. Blank Hex contested.jpg
+116. Ash Wastes contested.jpg
+117. Fortified Bastion contested.jpg
+118. Blank Hex contested.jpg
+119. Special Event Hex contested.jpg
+120. Hive City contested.jpg
 121. Home Hex tau.jpg flipped
 122. Home Hex votann.jpg flipped
-
-
-
-
-
-
