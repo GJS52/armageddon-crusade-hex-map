@@ -122,8 +122,28 @@ body {
 
 .hex.flipped .hex-inner { transform: rotateY(180deg); }
 
-.hex-name { font-size: 14px; font-weight: 700; }
-.hex-number { font-size: 12px; opacity: 0.85; }
+.hex-name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: rgba(0,0,0,0.65);
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9);
+  margin-bottom: 4px;
+}
+.hex-number {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  background: rgba(0,0,0,0.55);
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.9);
+  opacity: 1;
+}
 </style>
 </head>
 
@@ -300,3 +320,4 @@ window.addEventListener('resize', zoomToFitMap);
 </script>
 </body>
 </html>
+
