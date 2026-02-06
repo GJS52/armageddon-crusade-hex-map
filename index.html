@@ -325,36 +325,17 @@ mapImage.onload = () => {
         map.appendChild(row);
       });
 
-     fitAndCenterMap();
+ 
     });
 };
 
 
-/* ================= FIT & CENTER ================= */
-function fitAndCenterMap() {
-  const stepY = HEX_H * 0.75;
-  const rows = layout.length;
-  const cols = Math.max(...layout.map(r => r.length));
-
-  const mapWidth = cols * HEX_W + HEX_W / 2;
-  const mapHeight = (rows - 1) * stepY + HEX_H;
-
-  const padding = 40;
-  const scaleX = (window.innerWidth - padding) / mapWidth;
-  const scaleY = (window.innerHeight - padding) / mapHeight;
-
-  scale = Math.min(scaleX, scaleY, 1);
-
-  translateX = -mapWidth * scale / 2;
-  translateY = -mapHeight * scale / 2;
-
-  updateTransform();
-}
 
 
 </script>
 </body>
 </html>
+
 
 
 
