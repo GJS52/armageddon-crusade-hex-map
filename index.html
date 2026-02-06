@@ -11,17 +11,12 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-image: url('background-armageddon-4.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   font-family: Arial, sans-serif;
   color: #fff;
-  touch-action: none;
 }
 
 /* ================= MUSIC BUTTON ================= */
@@ -36,59 +31,55 @@ body {
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
-  user-select: none;
+}
+
+/* ================= LAYOUT ================= */
+#ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
 }
 
 /* ================= MESSAGE BOARD ================= */
 #messageBoard {
-  position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 220px;
-  background: rgba(245, 240, 230, 0.92);
-  color: #000;
-  border: 3px solid rgba(0,0,0,0.85);
-  border-radius: 10px;
+  width: 260px;
+  background: rgba(245,245,235,0.95);
+  color: #111;
   padding: 14px;
-  z-index: 900;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.6);
+  font-size: 14px;
 }
 
 #messageBoard h2 {
-  margin: 0 0 10px;
-  font-size: 16px;
+  margin: 0 0 10px 0;
+  font-size: 18px;
   text-align: center;
-  letter-spacing: 1px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
 }
 
 .faction-row {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  font-weight: 800;
-  margin: 8px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  font-weight: 700;
 }
 
 /* ================= MAP ================= */
 .map-wrapper {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
   cursor: grab;
-  touch-action: none;
 }
 
 .map {
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   transform-origin: center center;
-  transition: transform 0.15s ease-out;
 }
 
+/* ================= ROWS ================= */
 .row { display: flex; }
 .row.offset { margin-left: 50px; }
 
@@ -96,8 +87,8 @@ body {
 .hex {
   width: 100px;
   height: 115px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   position: relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   perspective: 800px;
 }
 
@@ -110,6 +101,7 @@ body {
   pointer-events: none;
 }
 
+/* ================= FLIP ================= */
 .hex-inner {
   width: 100%;
   height: 100%;
@@ -117,10 +109,17 @@ body {
   transform-style: preserve-3d;
 }
 
+.hex.flipped .hex-inner {
+  transform: rotateY(180deg);
+}
+
 .front, .back {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ================= FRONT ================= */
@@ -128,9 +127,6 @@ body {
   background-image: url('map.jpg');
   background-size: var(--map-width) var(--map-height);
   background-position: var(--bg-x) var(--bg-y);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .front-number {
@@ -140,7 +136,7 @@ body {
   background: rgba(0,0,0,0.65);
   padding: 8px 16px;
   border-radius: 10px;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 8px #000;
 }
 
 /* ================= BACK ================= */
@@ -148,13 +144,8 @@ body {
   transform: rotateY(180deg);
   background-size: cover;
   background-position: center;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-
-.hex.flipped .hex-inner { transform: rotateY(180deg); }
 
 .hex-name {
   font-size: 16px;
@@ -162,6 +153,7 @@ body {
   background: rgba(0,0,0,0.65);
   padding: 6px 10px;
   border-radius: 6px;
+  margin-bottom: 4px;
 }
 
 .hex-number {
@@ -170,7 +162,6 @@ body {
   background: rgba(0,0,0,0.55);
   padding: 3px 8px;
   border-radius: 6px;
-  margin-top: 4px;
 }
 </style>
 </head>
@@ -178,31 +169,35 @@ body {
 <body>
 
 <div id="musicButton">Play Music</div>
+<audio id="bgMusic" src="music.mp3" loop></audio>
 
-<div id="messageBoard">
-  <h2>HEX CONTROL</h2>
-  <div id="factionList"></div>
-</div>
+<div id="ui">
+  <div id="messageBoard">
+    <h2>Sector Control</h2>
+    <div id="factionList"></div>
+  </div>
 
-<audio id="bgMusic" src="music.mp3" loop autoplay></audio>
-
-<div class="map-wrapper" id="mapWrapper">
-  <div class="map" id="hexMap"></div>
+  <div class="map-wrapper" id="mapWrapper">
+    <div class="map" id="hexMap"></div>
+  </div>
 </div>
 
 <script>
+/* ================= OWNER ================= */
 const OWNER_PASSWORD = "joseph";
 const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD;
 
-/* MUSIC */
+/* ================= MUSIC ================= */
 const music = document.getElementById('bgMusic');
+const musicButton = document.getElementById('musicButton');
 music.volume = 0.75;
+
 musicButton.onclick = () => {
   if (music.paused) { music.play(); musicButton.textContent = 'Pause Music'; }
   else { music.pause(); musicButton.textContent = 'Play Music'; }
 };
 
-/* PAN / ZOOM */
+/* ================= PAN / ZOOM ================= */
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
@@ -210,18 +205,8 @@ let translateX = 0, translateY = 0, scale = 1;
 let dragging = false, startX = 0, startY = 0;
 
 function updateTransform() {
-  map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-}
-
-function zoomToFitMap() {
-  const bounds = map.getBoundingClientRect();
-  const padding = 140;
-  scale = Math.min(
-    (window.innerWidth - padding) / bounds.width,
-    (window.innerHeight - padding) / bounds.height,
-    1
-  );
-  updateTransform();
+  map.style.transform =
+    `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scale})`;
 }
 
 mapWrapper.addEventListener('wheel', e => {
@@ -247,7 +232,7 @@ window.addEventListener('mousemove', e => {
 
 window.addEventListener('mouseup', () => dragging = false);
 
-/* LAYOUT */
+/* ================= LAYOUT ================= */
 const HEX_W = 100;
 const HEX_H = 115;
 
@@ -267,7 +252,7 @@ const layout = [
   [121,122]
 ];
 
-/* MAP IMAGE */
+/* ================= MAP IMAGE ================= */
 const mapImage = new Image();
 mapImage.src = 'map.jpg';
 
@@ -275,11 +260,16 @@ mapImage.onload = () => {
   document.documentElement.style.setProperty('--map-width', mapImage.width + 'px');
   document.documentElement.style.setProperty('--map-height', mapImage.height + 'px');
 
+  const stepY = HEX_H * 0.75;
+  const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
+  const gridHeight = (layout.length - 1) * stepY + HEX_H;
+
   fetch('hex-data-3.txt?t=' + Date.now())
     .then(r => r.text())
     .then(text => {
+
       const hexData = {};
-      const factionCounts = { Imperium: 0, Chaos: 0, Xenos: 0 };
+      const factionCounts = { Imperium:0, Chaos:0, Xenos:0 };
 
       text.split(/\r?\n/).forEach(line => {
         if (!line) return;
@@ -288,31 +278,75 @@ mapImage.onload = () => {
 
         const num = line.slice(0, dot).trim();
         let rest = line.slice(dot + 1).trim();
+        let flipped = false;
+
+        if (rest.toLowerCase().endsWith('flipped')) {
+          flipped = true;
+          rest = rest.slice(0, -7).trim();
+        }
 
         const lastSpace = rest.lastIndexOf(' ');
-        const backImage = rest.slice(lastSpace + 1).toLowerCase();
+        const type = rest.slice(0, lastSpace);
+        const backImage = rest.slice(lastSpace + 1);
 
-        if (backImage.includes('imperium.jpg')) factionCounts.Imperium++;
-        else if (backImage.includes('chaos.jpg')) factionCounts.Chaos++;
-        else if (backImage.includes('xenos.jpg')) factionCounts.Xenos++;
+        if (backImage.includes('imperium')) factionCounts.Imperium++;
+        if (backImage.includes('chaos')) factionCounts.Chaos++;
+        if (backImage.includes('xenos')) factionCounts.Xenos++;
+
+        hexData[num] = { type, backImage, flipped };
       });
 
-      /* SORT & RENDER MESSAGE BOARD */
-      const factionList = document.getElementById('factionList');
-      Object.entries(factionCounts)
-        .sort((a, b) => b[1] - a[1])
-        .forEach(([name, count]) => {
-          const row = document.createElement('div');
-          row.className = 'faction-row';
-          row.innerHTML = `<span>${name}</span><span>${count}</span>`;
-          factionList.appendChild(row);
+      /* BUILD MAP */
+      layout.forEach((rowData, rowIndex) => {
+        const row = document.createElement('div');
+        row.className = 'row' + (rowIndex % 2 ? ' offset' : '');
+        row.style.marginTop = rowIndex ? `-${HEX_H * 0.25}px` : '0';
+
+        rowData.forEach((num, colIndex) => {
+          const hex = document.createElement('div');
+          hex.className = 'hex';
+
+          const xF = (colIndex * HEX_W + (rowIndex % 2) * HEX_W / 2) / gridWidth;
+          const yF = (rowIndex * stepY) / gridHeight;
+
+          hex.style.setProperty('--bg-x', `${-xF * mapImage.width}px`);
+          hex.style.setProperty('--bg-y', `${-yF * mapImage.height}px`);
+
+          const data = hexData[num] || {};
+
+          hex.innerHTML = `
+            <div class="hex-inner">
+              <div class="front"><div class="front-number">${num}</div></div>
+              <div class="back" style="background-image:url('${data.backImage || ''}')">
+                <div class="hex-name">${data.type || ''}</div>
+                <div class="hex-number">${num}</div>
+              </div>
+            </div>
+          `;
+
+          if (data.flipped) hex.classList.add('flipped');
+          if (IS_OWNER) hex.onclick = () => hex.classList.toggle('flipped');
+
+          row.appendChild(hex);
         });
 
-      requestAnimationFrame(zoomToFitMap);
+        map.appendChild(row);
+      });
+
+      /* MESSAGE BOARD */
+      const factionList = document.getElementById('factionList');
+      Object.entries(factionCounts)
+        .sort((a,b) => b[1] - a[1])
+        .forEach(([name,count]) => {
+          const div = document.createElement('div');
+          div.className = 'faction-row';
+          div.innerHTML = `<span>${name}</span><span>${count}</span>`;
+          factionList.appendChild(div);
+        });
+
+      updateTransform();
     });
 };
-
-window.addEventListener('resize', zoomToFitMap);
 </script>
 </body>
 </html>
