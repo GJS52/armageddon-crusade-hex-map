@@ -201,7 +201,7 @@ musicButton.onclick = () => {
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
-let translateX = 0, translateY = 0, scale = 1;
+let translateX = 0, translateY = 0, scale = 0.8;
 let dragging = false, startX = 0, startY = 0;
 
 function updateTransform() {
@@ -212,6 +212,7 @@ function updateTransform() {
 mapWrapper.addEventListener('wheel', e => {
   e.preventDefault();
   scale = Math.min(2, Math.max(0.5, scale - e.deltaY * 0.001));
+  scale *= 0.85; // extra zoom out
   updateTransform();
 });
 
@@ -350,3 +351,4 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
