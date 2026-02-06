@@ -172,35 +172,65 @@ musicButton.addEventListener('click', () => {
 });
 
 /* ================= PAN / ZOOM ================= */
+
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
-let translateX = 0, translateY = 0;
+let translateX = 0;
+let translateY = 0;
 let scale = 1;
-let dragging = false, startX, startY;
+
+let dragging = false;
+let startX = 0;
+let startY = 0;
 
 function updateTransform() {
-  map.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  map.style.transform =
+    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 }
 
+/* ---- ZOOM (towards cursor) ---- */
 mapWrapper.addEventListener('wheel', e => {
   e.preventDefault();
+
+  const rect = mapWrapper.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  const prevScale = scale;
   scale = Math.min(2, Math.max(0.5, scale - e.deltaY * 0.001));
+
+  const scaleRatio = scale / prevScale;
+
+  translateX = mouseX - scaleRatio * (mouseX - translateX);
+  translateY = mouseY - scaleRatio * (mouseY - translateY);
+
   updateTransform();
 });
 
+/* ---- PAN ---- */
 mapWrapper.addEventListener('mousedown', e => {
   dragging = true;
-  startX = e.clientX - translateX;
-  startY = e.clientY - translateY;
+  startX = e.clientX;
+  startY = e.clientY;
 });
+
 window.addEventListener('mousemove', e => {
   if (!dragging) return;
-  translateX = e.clientX - startX;
-  translateY = e.clientY - startY;
+
+  translateX += (e.clientX - startX);
+  translateY += (e.clientY - startY);
+
+  startX = e.clientX;
+  startY = e.clientY;
+
   updateTransform();
 });
-window.addEventListener('mouseup', () => dragging = false);
+
+window.addEventListener('mouseup', () => {
+  dragging = false;
+});
+
 
 /* ================= LAYOUT ================= */
 const HEX_W = 100;
@@ -326,6 +356,7 @@ function fitAndCenterMap() {
 </script>
 </body>
 </html>
+
 
 
 
