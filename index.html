@@ -42,7 +42,10 @@ body {
 
 /* ================= MAP ================= */
 .map-wrapper {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   cursor: grab;
   touch-action: none;
 }
@@ -322,40 +325,37 @@ mapImage.onload = () => {
         map.appendChild(row);
       });
 
-      // **Center map after all hexes are fully added**
-      setTimeout(() => fitAndCenterMap(), 0);
+     fitAndCenterMap();
     });
 };
 
 
 /* ================= FIT & CENTER ================= */
 function fitAndCenterMap() {
-  const bounds = map.getBoundingClientRect();
+  const stepY = HEX_H * 0.75;
+  const rows = layout.length;
+  const cols = Math.max(...layout.map(r => r.length));
 
-  // Center of the viewport
-  const viewportCenterX = window.innerWidth / 2;
-  const viewportCenterY = window.innerHeight / 2;
+  const mapWidth = cols * HEX_W + HEX_W / 2;
+  const mapHeight = (rows - 1) * stepY + HEX_H;
 
-  // Center of the map
-  const mapCenterX = bounds.width / 2;
-  const mapCenterY = bounds.height / 2;
+  const padding = 40;
+  const scaleX = (window.innerWidth - padding) / mapWidth;
+  const scaleY = (window.innerHeight - padding) / mapHeight;
 
-  // Scale to fit
-  const padding = 20;
-  const scaleX = (window.innerWidth - padding) / bounds.width;
-  const scaleY = (window.innerHeight - padding) / bounds.height;
   scale = Math.min(scaleX, scaleY, 1);
 
-  // Translate so map center aligns with viewport center
-  translateX = viewportCenterX - mapCenterX * scale;
-  translateY = viewportCenterY - mapCenterY * scale;
+  translateX = -mapWidth * scale / 2;
+  translateY = -mapHeight * scale / 2;
 
   updateTransform();
 }
 
+
 </script>
 </body>
 </html>
+
 
 
 
