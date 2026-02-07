@@ -24,7 +24,7 @@ body {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1000;
+  z-index: 2000;
   padding: 8px 14px;
   background: #fff;
   color: #000;
@@ -43,25 +43,46 @@ body {
 /* ================= MESSAGE BOARD ================= */
 #messageBoard {
   width: 260px;
-  background: rgba(245,245,235,0.95);
+  background: rgba(245,245,235,0.96);
   color: #111;
   padding: 14px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.6);
-  font-size: 14px;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
 }
 
-#messageBoard h2 {
-  margin: 0 0 10px 0;
-  font-size: 18px;
+/* GOTHIC TITLE */
+.board-title {
+  font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 900;
   text-align: center;
+  color: #4b0000;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 0 #000;
 }
 
+/* FACTION LIST */
 .faction-row {
   display: flex;
   justify-content: space-between;
   padding: 6px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  font-weight: 700;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* MESSAGE AREA */
+.board-messages {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px solid rgba(0,0,0,0.4);
+  font-size: 13px;
+  font-style: italic;
+  color: #222;
+  text-align: center;
 }
 
 /* ================= MAP ================= */
@@ -70,6 +91,7 @@ body {
   position: relative;
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
 }
 
 .map {
@@ -122,7 +144,7 @@ body {
   justify-content: center;
 }
 
-/* ================= FRONT ================= */
+/* FRONT */
 .front {
   background-image: url('map.jpg');
   background-size: var(--map-width) var(--map-height);
@@ -139,7 +161,7 @@ body {
   text-shadow: 0 0 8px #000;
 }
 
-/* ================= BACK ================= */
+/* BACK */
 .back {
   transform: rotateY(180deg);
   background-size: cover;
@@ -157,11 +179,29 @@ body {
 }
 
 .hex-number {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   background: rgba(0,0,0);
   padding: 3px 8px;
   border-radius: 6px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  #ui {
+    flex-direction: column;
+  }
+
+  #messageBoard {
+    width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .map-wrapper {
+    flex: 1;
+  }
 }
 </style>
 </head>
@@ -173,8 +213,9 @@ body {
 
 <div id="ui">
   <div id="messageBoard">
-    <h2>Sector Control</h2>
+    <div class="board-title">The Battle for Armageddon</div>
     <div id="factionList"></div>
+    <div class="board-messages">placeholder-1</div>
   </div>
 
   <div class="map-wrapper" id="mapWrapper">
@@ -201,7 +242,7 @@ musicButton.onclick = () => {
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
-let translateX = 0, translateY = 0, scale = 0.8;
+let translateX = 0, translateY = 0, scale = 0.75;
 let dragging = false, startX = 0, startY = 0;
 
 function updateTransform() {
@@ -212,7 +253,6 @@ function updateTransform() {
 mapWrapper.addEventListener('wheel', e => {
   e.preventDefault();
   scale = Math.min(2, Math.max(0.5, scale - e.deltaY * 0.001));
-  scale *= 0.85; // extra zoom out
   updateTransform();
 });
 
@@ -233,7 +273,7 @@ window.addEventListener('mousemove', e => {
 
 window.addEventListener('mouseup', () => dragging = false);
 
-/* ================= LAYOUT ================= */
+/* ================= MAP BUILD ================= */
 const HEX_W = 100;
 const HEX_H = 115;
 
@@ -253,7 +293,6 @@ const layout = [
   [121,122]
 ];
 
-/* ================= MAP IMAGE ================= */
 const mapImage = new Image();
 mapImage.src = 'map.jpg';
 
@@ -261,14 +300,9 @@ mapImage.onload = () => {
   document.documentElement.style.setProperty('--map-width', mapImage.width + 'px');
   document.documentElement.style.setProperty('--map-height', mapImage.height + 'px');
 
-  const stepY = HEX_H * 0.75;
-  const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
-  const gridHeight = (layout.length - 1) * stepY + HEX_H;
-
   fetch('hex-data-3.txt?t=' + Date.now())
     .then(r => r.text())
     .then(text => {
-
       const hexData = {};
       const factionCounts = { Imperium:0, Chaos:0, Xenos:0 };
 
@@ -278,14 +312,7 @@ mapImage.onload = () => {
         if (dot === -1) return;
 
         const num = line.slice(0, dot).trim();
-        let rest = line.slice(dot + 1).trim();
-        let flipped = false;
-
-        if (rest.toLowerCase().endsWith('flipped')) {
-          flipped = true;
-          rest = rest.slice(0, -7).trim();
-        }
-
+        const rest = line.slice(dot + 1).trim();
         const lastSpace = rest.lastIndexOf(' ');
         const type = rest.slice(0, lastSpace);
         const backImage = rest.slice(lastSpace + 1);
@@ -294,24 +321,16 @@ mapImage.onload = () => {
         if (backImage.includes('chaos')) factionCounts.Chaos++;
         if (backImage.includes('xenos')) factionCounts.Xenos++;
 
-        hexData[num] = { type, backImage, flipped };
+        hexData[num] = { type, backImage };
       });
 
-      /* BUILD MAP */
       layout.forEach((rowData, rowIndex) => {
         const row = document.createElement('div');
         row.className = 'row' + (rowIndex % 2 ? ' offset' : '');
-        row.style.marginTop = rowIndex ? `-${HEX_H * 0.25}px` : '0';
 
-        rowData.forEach((num, colIndex) => {
+        rowData.forEach(num => {
           const hex = document.createElement('div');
           hex.className = 'hex';
-
-          const xF = (colIndex * HEX_W + (rowIndex % 2) * HEX_W / 2) / gridWidth;
-          const yF = (rowIndex * stepY) / gridHeight;
-
-          hex.style.setProperty('--bg-x', `${-xF * mapImage.width}px`);
-          hex.style.setProperty('--bg-y', `${-yF * mapImage.height}px`);
 
           const data = hexData[num] || {};
 
@@ -325,16 +344,13 @@ mapImage.onload = () => {
             </div>
           `;
 
-          if (data.flipped) hex.classList.add('flipped');
           if (IS_OWNER) hex.onclick = () => hex.classList.toggle('flipped');
-
           row.appendChild(hex);
         });
 
         map.appendChild(row);
       });
 
-      /* MESSAGE BOARD */
       const factionList = document.getElementById('factionList');
       Object.entries(factionCounts)
         .sort((a,b) => b[1] - a[1])
@@ -351,6 +367,3 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
-
-
-
