@@ -52,9 +52,8 @@ body {
   z-index: 1000;
 }
 
-/* GOTHIC TITLE */
 .board-title {
-  font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  font-family: "Cinzel","Times New Roman",serif;
   font-size: 22px;
   font-weight: 900;
   text-align: center;
@@ -64,7 +63,6 @@ body {
   text-shadow: 0 1px 0 #000;
 }
 
-/* FACTION LIST */
 .faction-row {
   display: flex;
   justify-content: space-between;
@@ -74,7 +72,6 @@ body {
   font-size: 14px;
 }
 
-/* MESSAGE AREA */
 .board-messages {
   margin-top: auto;
   padding-top: 12px;
@@ -99,6 +96,7 @@ body {
   left: 50%;
   top: 50%;
   transform-origin: center center;
+  will-change: transform;
 }
 
 /* ================= ROWS ================= */
@@ -123,7 +121,6 @@ body {
   pointer-events: none;
 }
 
-/* ================= FLIP ================= */
 .hex-inner {
   width: 100%;
   height: 100%;
@@ -188,19 +185,12 @@ body {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  #ui {
-    flex-direction: column;
-  }
+  #ui { flex-direction: column; }
 
   #messageBoard {
     width: 100%;
     max-height: 40vh;
     overflow-y: auto;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-  }
-
-  .map-wrapper {
-    flex: 1;
   }
 }
 </style>
@@ -224,11 +214,10 @@ body {
 </div>
 
 <script>
-/* ================= OWNER ================= */
 const OWNER_PASSWORD = "joseph";
 const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD;
 
-/* ================= MUSIC ================= */
+/* MUSIC */
 const music = document.getElementById('bgMusic');
 const musicButton = document.getElementById('musicButton');
 music.volume = 0.75;
@@ -238,7 +227,7 @@ musicButton.onclick = () => {
   else { music.pause(); musicButton.textContent = 'Play Music'; }
 };
 
-/* ================= PAN / ZOOM ================= */
+/* PAN / ZOOM */
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
@@ -273,9 +262,10 @@ window.addEventListener('mousemove', e => {
 
 window.addEventListener('mouseup', () => dragging = false);
 
-/* ================= MAP BUILD ================= */
+/* MAP BUILD */
 const HEX_W = 100;
 const HEX_H = 115;
+const STEP_Y = HEX_H * 0.75;
 
 const layout = [
   [1,2,3,4,5,6,7,8,9,10],
@@ -299,6 +289,12 @@ mapImage.src = 'map.jpg';
 mapImage.onload = () => {
   document.documentElement.style.setProperty('--map-width', mapImage.width + 'px');
   document.documentElement.style.setProperty('--map-height', mapImage.height + 'px');
+
+  const gridWidth = Math.max(...layout.map(r => r.length)) * HEX_W;
+  const gridHeight = (layout.length - 1) * STEP_Y + HEX_H;
+
+  map.style.width = gridWidth + 'px';
+  map.style.height = gridHeight + 'px';
 
   fetch('hex-data-3.txt?t=' + Date.now())
     .then(r => r.text())
@@ -327,10 +323,17 @@ mapImage.onload = () => {
       layout.forEach((rowData, rowIndex) => {
         const row = document.createElement('div');
         row.className = 'row' + (rowIndex % 2 ? ' offset' : '');
+        row.style.marginTop = rowIndex ? `-${HEX_H * 0.25}px` : '0';
 
-        rowData.forEach(num => {
+        rowData.forEach((num, colIndex) => {
           const hex = document.createElement('div');
           hex.className = 'hex';
+
+          const xF = (colIndex * HEX_W + (rowIndex % 2) * HEX_W / 2) / gridWidth;
+          const yF = (rowIndex * STEP_Y) / gridHeight;
+
+          hex.style.setProperty('--bg-x', `${-xF * mapImage.width}px`);
+          hex.style.setProperty('--bg-y', `${-yF * mapImage.height}px`);
 
           const data = hexData[num] || {};
 
