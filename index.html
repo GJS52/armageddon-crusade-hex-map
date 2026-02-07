@@ -69,13 +69,15 @@ body {
 }
 
 .board-messages {
-  margin-top: auto;
+  margin-top: 12px;
   padding-top: 12px;
   border-top: 2px solid rgba(0,0,0,0.4);
   font-size: 13px;
   font-style: italic;
+  color: #222;
   text-align: center;
 }
+
 
 /* MAP */
 .map-wrapper {
@@ -196,7 +198,7 @@ body {
     <div class="board-title">The Battle for Armageddon</div>
     <div id="factionList"></div>
     <div class="board-messages">
-/* Message Board */
+
 <h2>Current Battle</h2>
       <b>Hex #:</b> X v Y<br>
       <b>Hex #:</b> X v Y<br>
@@ -232,7 +234,7 @@ musicButton.onclick = () => {
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
-let translateX = 0, translateY = 0, scale = 0.75;
+let translateX = 0, translateY = 0, scale = 0.70;
 let dragging = false, startX = 0, startY = 0;
 
 function updateTransform() {
@@ -380,4 +382,5 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
