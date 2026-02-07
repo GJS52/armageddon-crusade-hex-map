@@ -196,7 +196,63 @@ body {
   <div id="messageBoard">
     <div class="board-title">The Battle for Armageddon</div>
     <div id="factionList"></div>
-    <div class="board-messages">placeholder-1</div>
+    <div class="board-messages">
+      <h2 style="color: darkred"><i>There is only war</i></h2>
+<br>
+<h3>Current Battles:</h3>
+Hex #, Hex Type: X vs Y<br>
+Hex #, Hex Type: X vs Y<br>
+Hex #, Hex Type: X vs Y<br>
+Hex #, Hex Type: X vs Y<br>
+Hex #, Hex Type: X vs Y<br>
+Hex #, Hex Type: X vs Y<br><br>
+<p align="left"><b>Hex Rules:</b><br><br>
+BLANK HEX<br>
+- No special rules<br><br>
+HIVE CITY<br>
+- Effect: Each winning player selects one unit that gains +1 XP.<br><br>
+MANUFACTORUM<br>
+- Effect: Winning faction gains +1 Requisition Point (team pool).<br><br>
+SPACEPORT****<br>
+- Effect: One winning player may choose one infantry unit to start their next game
+  in deep strike<br><br>
+ASH WASTES<br>
+- Effect: Each winning player gains +1 Command Point at the start of
+  Battle Round 1 in their next game.<br><br>
+FORTIFIED BASTION<br>
+- Effect: Winning faction may re-roll one Out-of-Action test this round.<br><br>
+WARP-SCARRED ZONE<br>
+- Effect: After the battle, the winning player rolls 1D6:<br>
+    1–2: One unit gains a Battle Scar<br>
+    3–4: No effect<br>
+    5: One unit gains +1 XP<br>
+    6: Gain +1 Requisition Point (team pool)<br><br>
+<b>Special Event:</b><br><br>
+1. Orbital Firestorm<br>
+Choose one enemy-controlled hex anywhere on the map. It becomes uncontrolled neutral.
+If it was a Home Hex, the owning player gains +1 RP.<br><br>
+
+2. Deep Recon Breakthrough<br>
+Reveal one adjacent neutral hex. That hex must be selectable next round.
+Winning that battle grants +1 XP to one unit.<br><br>
+
+3. Supply Chain Seizure<br>
+Gain +2 RP (team pool) OR activate one Supply Post ability for free.<br><br>
+
+4. Ruthless Momentum<br>
+Choose one unit: gain +2 XP OR remove one Battle Scar.
+Also gain +1 CP at the start of your next game.<br><br>
+
+5. Strategic Overreach<br>
+Choose an opposing faction. They must defend a hex of your choice next round or lose 1 RP.
+(Home Hexes cannot be forced before Round 3.)<br><br>
+
+6. Total Battlefield Salvage<br>
+Claim one adjacent neutral hex without a battle OR
+Gain +1 RP and give +1 XP to two different units.
+</p>
+
+    </div>
   </div>
 
   <div class="map-wrapper" id="mapWrapper">
@@ -223,7 +279,7 @@ musicButton.onclick = () => {
 const mapWrapper = document.getElementById('mapWrapper');
 const map = document.getElementById('hexMap');
 
-let translateX = 0, translateY = 0, scale = 0.65;
+let translateX = 0, translateY = 0, scale = 0.7;
 let dragging = false, startX = 0, startY = 0;
 
 function updateTransform() {
@@ -371,5 +427,6 @@ mapImage.onload = () => {
 </script>
 </body>
 </html>
+
 
 
