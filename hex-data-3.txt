@@ -1,11 +1,11 @@
 1. Home Hex custodes.jpg flipped
 2. Home Hex dark-angels.jpg flipped
-3. Warp-Scarred Zone imperium.jpg flipped
-4. Warp-Scarred Zone imperium.jpg flipped
-5. Manufactorum chaos.jpg flipped
-6. Spaceport xenos.jpg flipped
-7. Blank Hex xenos.jpg flipped
-8. Ash Wastes xenos.jpg flipped
+3. Warp-Scarred Zone imperium.jpg 
+4. Warp-Scarred Zone imperium.jpg 
+5. Manufactorum chaos.jpg 
+6. Spaceport xenos.jpg 
+7. Blank Hex xenos.jpg 
+8. Ash Wastes xenos.jpg 
 9. Special Event Hex contested.jpg
 10. Manufactorum contested.jpg
 11. Home Hex grey-knights.jpg flipped
@@ -120,6 +120,7 @@
 120. Hive City contested.jpg
 121. Home Hex tau.jpg flipped
 122. Home Hex votann.jpg flipped
+
 
 
 
