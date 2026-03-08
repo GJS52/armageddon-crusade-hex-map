@@ -20,7 +20,7 @@
 20. Special Event Hex contested.jpg
 21. Blank Hex contested.jpg
 22. Blank Hex contested.jpg
-23. Hive City contested.jpg flipped
+23. Hive City imperium.jpg flipped
 24. Fortified Bastion contested.jpg
 25. Ash Wastes contested.jpg flipped
 26. Manufactorum contested.jpg
@@ -52,12 +52,12 @@
 52. Warp-Scarred Zone contested.jpg
 53. Warp-Scarred Zone contested.jpg
 54. Fortified Bastion contested.jpg
-55. Fortified Bastion contested.jpg flipped
+55. Fortified Bastion chaos.jpg flipped
 56. Ash Wastes contested.jpg
 57. Hive City contested.jpg
 58. Hive City contested.jpg
 59. Home Hex world-eaters.jpg flipped 
-60. Home Hex black-legion.jpg flipped 
+60. Home Hex word-bearer.jpg flipped 
 61. Manufactorum contested.jpg
 62. Manufactorum contested.jpg
 63. Fortified Bastion contested.jpg
@@ -120,6 +120,7 @@
 120. Hive City contested.jpg
 121. Home Hex tau.jpg flipped 
 122. Home Hex votann.jpg flipped
+
 
 
 
