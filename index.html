@@ -341,7 +341,7 @@ mapImage.onload = () => {
     .then(text => {
 
       const hexData = {};
-      const factionCounts = { Imperium:0, Chaos:-4, Xenos:0 };
+      const factionCounts = { Imperium:0-4, Chaos:-4, Xenos:0-4 };
 
       text.split(/\r?\n/).forEach(line => {
         if (!line) return;
@@ -363,13 +363,13 @@ mapImage.onload = () => {
         const type = rest.slice(0, lastSpace);
         const backImage = rest.slice(lastSpace + 1);
 
-        if (backImage.includes('imperium')) factionCounts.Imperium++;
-        if (backImage.includes('chaos') || backImage.includes('world-eaters') || backImage.includes('death-guard') || backImage.includes('word-bearer') || backImage.includes('thousand-sons')) factionCounts.Chaos++ - 4;
-        if (backImage.includes('xenos')) factionCounts.Xenos++;
+        if (backImage.includes('imperium') || backImage.includes('custodes') || backImage.includes('dark-angels') || backImage.includes('grey-knights') || backImage.includes('raptors')) factionCounts.Imperium++;
+        if (backImage.includes('chaos') || backImage.includes('world-eaters') || backImage.includes('death-guard') || backImage.includes('word-bearer') || backImage.includes('thousand-sons')) factionCounts.Chaos++;
+        if (backImage.includes('xenos') || backImage.includes('orks') || backImage.includes('necron') || backImage.includes('tau') || backImage.includes('votann')) factionCounts.Xenos++;
 
         hexData[num] = { type, backImage, flipped };
       });
-
+ 
       layout.forEach((rowData, rowIndex) => {
         const row = document.createElement('div');
         row.className = 'row' + (rowIndex % 2 ? ' offset' : '');
