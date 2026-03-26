@@ -198,60 +198,42 @@ body {
     <div class="board-title">The Battle for Armageddon</div>
     <div id="factionList"></div>
     <div class="board-messages">
-      <h2 style="color: darkred"><i>There is only war</i></h2>
+      <h2 style="color: darkred"><i>Mission: Total Domination</i></h2>
 <h3>Current Battles:</h3>
 <span style="font-size: 12px">
 Hex 34, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Hive City</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Breakout"><b>
-        Breakout 
-        </b></a>:<br> 
+    Hive City</b></a>,<br> 
     Orkz vs World Eaters
     <br><br>    
   
 Hex 54, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Fortified Bastion</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Lighting-the-Path"><b>
-        Lighting the Path
-        </b></a>:<br> 
+    Fortified Bastion</b></a>,<br> 
     Dark Angels vs Necrons
     <br><br>
     
 Hex 69, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Warp-Scarred Zone</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Seal-the-Rifts"><b>
-        Seal the Rifts
-        </b></a>:<br> 
+    Warp-Scarred Zone</b></a>,<br> 
     Ta'u vs Word Bearers
     <br><br>
     
 Hex 84, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Blank</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Blood-and-Shadow"><b>
-        Blood and Shadow
-        </b></a>:<br> 
+    Blank</b></a>,<br> 
    Raptors vs Leagues of Votann
     <br><br>
     
 Hex 101, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Fortified Bastion</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Temporal-Raid"><b>
-        Temporal Raid
-        </b></a>:<br> 
+    Fortified Bastion</b></a>,<br> 
     Death Guard vs Grey Knights
     <br><br>
     
 Hex 120, 
   <a href="https://docs.google.com/document/d/1UTp0P3CVT6iFZrzgeoCkAuYKA1DsNRtNV2rbA7oTPa8/edit?tab=t.mipvmp5jkq2q" target="_blank" rel="noopener noreferrer"><b>
-    Hive City</b></a>,<br>Mission 
-    <a href="https://wahapedia.ru/wh40k10ed/the-rules/armageddon/#Offering-of-Blood"><b>
-        Breakout
-        </b></a>:<br> 
+    Hive City</b></a>,<br> 
     Thousand Sons vs Adeptus Custodes
     <br><br>
 
@@ -382,7 +364,7 @@ mapImage.onload = () => {
         const backImage = rest.slice(lastSpace + 1);
 
         if (backImage.includes('imperium')) factionCounts.Imperium++;
-        if (backImage.includes('chaos')) factionCounts.Chaos++;
+        if (backImage.includes('chaos','word-eaters','word-bearer','thousand-sons','death-guard')) factionCounts.Chaos++;
         if (backImage.includes('xenos')) factionCounts.Xenos++;
 
         hexData[num] = { type, backImage, flipped };
