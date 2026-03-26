@@ -364,7 +364,7 @@ mapImage.onload = () => {
         const backImage = rest.slice(lastSpace + 1);
 
         if (backImage.includes('imperium')) factionCounts.Imperium++;
-        if (backImage.includes('chaos','word-eaters','word-bearer','thousand-sons','death-guard')) factionCounts.Chaos++;
+        if (backImage.includes('chaos') || backImage.includes('world-eaters') || backImage.includes('death-guard') || backImage.includes('word-bearer') || backImage.includes('thousand-sons')) factionCounts.Chaos++;
         if (backImage.includes('xenos')) factionCounts.Xenos++;
 
         hexData[num] = { type, backImage, flipped };
