@@ -46,7 +46,7 @@
 46. Fortified Bastion contested.jpg
 47. Blank Hex contested.jpg
 48. Spaceport contested.jpg
-49. Ash Wastes contested.jpg flipped
+49. Ash Wastes dark-angels.jpg flipped
 50. Home Hex thousand-sons.jpg flipped
 51. Manufactorum contested.jpg
 52. Warp-Scarred Zone contested.jpg
@@ -107,7 +107,7 @@
 107. Warp-Scarred Zone contested.jpg
 108. Hive City contested.jpg
 109. Blank Hex contested.jpg
-110. Fortified Bastion contested.jpg flipped
+110. Fortified Bastion custodes.jpg flipped
 111. Home Hex necron.jpg flipped 
 112. Home Hex orks.jpg flipped 
 113. Blank Hex contested.jpg
