@@ -10,11 +10,11 @@
 10. Manufactorum contested.jpg
 11. Home Hex imperium.jpg flipped
 12. Home Hex imperium.jpg flipped
-13. Warp-Scarred Zone contested.jpg flipped
+13. Warp-Scarred Zone chaos.jpg flipped
 14. Spaceport contested.jpg
 15. Hive City contested.jpg
 16. Blank Hex contested.jpg
-17. Blank Hex contested.jpg flipped
+17. Blank Hex chaos.jpg flipped
 18. Hive City contested.jpg
 19. Blank Hex contested.jpg
 20. Special Event Hex contested.jpg
@@ -29,7 +29,7 @@
 29. Hive City contested.jpg
 30. Warp-Scarred Zone contested.jpg
 31. Manufactorum imperium.jpg flipped
-32. Blank Hex contested.jpg flipped
+32. Blank Hex imperium.jpg flipped
 33. Blank Hex contested.jpg
 34. Hive City chaos.jpg flipped
 35. Spaceport contested.jpg
@@ -64,7 +64,7 @@
 64. Blank Hex contested.jpg
 65. Special Event Hex contested.jpg
 66. Warp-Scarred Zone contested.jpg
-67. Ash Wastes contested.jpg flipped
+67. Ash Wastes imperium.jpg flipped
 68. Blank Hex contested.jpg
 69. Warp-Scarred Zone imperium.jpg flipped
 70. Home Hex chaos.jpg flipped 
