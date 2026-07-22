@@ -301,7 +301,9 @@ Hex 99,
 <script>
 /* OWNER */
 const OWNER_PASSWORD = "joseph";
-const IS_OWNER = prompt("Enter control password or hit cancel to just view:") === OWNER_PASSWORD;
+const passwordInput = prompt("Enter control password or hit cancel to just view:");
+const IS_OWNER = passwordInput !== null
+  && passwordInput.trim().toLowerCase() === OWNER_PASSWORD.toLowerCase();
 
 /* MUSIC */
 const music = document.getElementById('bgMusic');
