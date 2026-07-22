@@ -364,7 +364,6 @@ function pointerDistance() {
 }
 
 mapWrapper.addEventListener('pointerdown', e => {
-  mapWrapper.setPointerCapture(e.pointerId);
   activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
   if (activePointers.size === 1) {
@@ -378,7 +377,7 @@ mapWrapper.addEventListener('pointerdown', e => {
   }
 });
 
-mapWrapper.addEventListener('pointermove', e => {
+window.addEventListener('pointermove', e => {
   if (!activePointers.has(e.pointerId)) return;
   activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
@@ -409,9 +408,8 @@ function releasePointer(e) {
   }
 }
 
-mapWrapper.addEventListener('pointerup', releasePointer);
-mapWrapper.addEventListener('pointercancel', releasePointer);
-mapWrapper.addEventListener('pointerleave', releasePointer);
+window.addEventListener('pointerup', releasePointer);
+window.addEventListener('pointercancel', releasePointer);
 
 /* MAP DATA */
 const layout = [
