@@ -18,8 +18,8 @@
 18. Hive City contested.jpg
 19. Blank Hex contested.jpg
 20. Special Event Hex contested.jpg
-21. Blank Hex chaos.png flipped
-22. Blank Hex contested.jpg flipped
+21. Blank Hex contested.jpg
+22. Blank Hex contested.jpg
 23. Hive City chaos.png flipped
 24. Fortified Bastion contested.jpg
 25. Ash Wastes contested.jpg
